@@ -100,7 +100,7 @@ export class FilmeHttpService {
       obj.overview,
       "https://image.tmdb.org/t/p/original" + obj.poster_path,
       "https://image.tmdb.org/t/p/original/" + obj.backdrop_path,
-      "https://www.youtube.com/embed/" + obj.videos.results[0].key,
+      "https://www.youtube.com/embed/" + obj.videos?.results[0]?.key,
       obj.release_date,
       obj.vote_average,
       obj.credits.cast.map((elenco: any) => elenco.name).slice(0, 10),
