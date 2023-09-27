@@ -10,9 +10,10 @@ import { Router } from '@angular/router';
 export class NavbarComponent {
 
   constructor(private router: Router) { }
+  nomeParaPesquisar?: string
 
-  isHomePage(): boolean {
-    return this.router.url === '/home';
+  
+  buscarPorNome() {
+    this.router.navigate(['lista/pesquisa', this.nomeParaPesquisar, '1'])
   }
-
 }

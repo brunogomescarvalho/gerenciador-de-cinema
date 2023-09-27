@@ -1,27 +1,27 @@
 <section>
-    <div class="row ">
-      <div class="col-lg-5 col-sm-12 d-flex align-items-center">
-        <ng-container *ngTemplateOutlet="carouselTemplate"></ng-container>
-      </div>
-      <div class="col-lg-7 col-sm-12">
-        <ng-container *ngTemplateOutlet="novidadesTemplate"></ng-container>
-      </div>
+  <div class="row ">
+    <div class="col-lg-5 col-sm-12 d-flex align-items-center">
+      <ng-container *ngTemplateOutlet="carouselTemplate"></ng-container>
     </div>
-    <hr>
-    <ng-container *ngTemplateOutlet="popularesTemplate"></ng-container>
-    <hr>
-   <div class="row justify-content-center">
+    <div class="col-lg-7 col-sm-12">
+      <ng-container *ngTemplateOutlet="novidadesTemplate"></ng-container>
+    </div>
+  </div>
+  <hr>
+  <ng-container *ngTemplateOutlet="popularesTemplate"></ng-container>
+  <hr>
+  <div class="row justify-content-center">
     <div class="col-10">
       <ng-container *ngTemplateOutlet="recomendadosTemplate"></ng-container>
     </div>
-   </div>
+  </div>
 </section>
 
 
 <!-- Carousel Template -->
 <ng-template #carouselTemplate>
   <ngb-carousel *ngIf="filmesNovidades" [interval]="5000">
-    <ng-template ngbSlide *ngFor="let filme of filmesNovidades | slice:0:12 index as i">
+    <ng-template ngbSlide *ngFor="let filme of filmesNovidades | slice:0:9 index as i">
       <div class="img-wrapper d-flex">
         <img [ngSrc]="filme.backdrop!" width="300" height="500" class="d-block w-100" alt="Random first slide" />
         <div class="carousel-caption">
@@ -34,9 +34,18 @@
 
 <!-- Novidades Template -->
 <ng-template #novidadesTemplate>
-  <div class="row d-flex">
-    <div class="col-sm-6 col-md-6 col-lg-2" *ngFor="let filme of filmesNovidades | slice:0:12">
-      <img (click)="mostrarDetalhes(filme)"  [ngSrc]="filme.poster!" width="150" height="300" class="img-fluid poster-card img rounded my-1" />
+  <div class="row">
+    <hr>
+    <div class="col-lg-12 text-center  m-0">
+      <h5 class="fs-3 fw-normal">Novidades</h5>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center gap-2">
+    <div *ngFor="let filme of filmesNovidades | slice:0:14" class="card p-0 bg-transparent"
+      style="width: 9rem; border:none">
+      <img (click)="mostrarDetalhes(filme)" [ngSrc]="filme.poster!" width="150" height="300"  ngbTooltip="{{filme.titulo}}" 
+            [openDelay]="800" 
+        class="img-fluid rounded poster-card" alt="Imagem do filme">
     </div>
   </div>
 </ng-template>
@@ -44,15 +53,16 @@
 <!-- Populares Template -->
 <ng-template #popularesTemplate>
   <div class="row">
-    <div class="col-10 text-center pb-2 m-0">
+    <div class="col-10 text-center  m-0">
       <h5 class="fs-3 fw-normal">Populares</h5>
     </div>
   </div>
   <div class="row d-flex justify-content-center gap-2">
     <div *ngFor="let filme of filmesPopulares | slice:0:9" class="card p-0 bg-transparent"
       style="width: 9rem; border:none">
-      <img (click)="mostrarDetalhes(filme)" [ngSrc]="filme.poster!" width="150" height="300"  class="img-fluid rounded poster-card"
-        alt="Imagem do filme">
+      <img (click)="mostrarDetalhes(filme)" [ngSrc]="filme.poster!" width="150" height="300" ngbTooltip="{{filme.titulo}}" 
+      [openDelay]="800" 
+        class="img-fluid rounded poster-card" alt="Imagem do filme">
     </div>
   </div>
 </ng-template>
@@ -65,23 +75,20 @@
     </div>
   </div>
   <div class="row d-flex">
-    <div class="col-lg-4 col-md-6 col-sm-12 mb-2 p-4" *ngFor="let filme of filmesRecomendados | slice:11:20">
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-2 p-4 pt-0" *ngFor="let filme of filmesRecomendados | slice:11:20">
       <div class="row">
         <div class="col-lg-3 col-md-6 col-sm-4 p-0 m-0">
-          <img (click)="mostrarDetalhes(filme)" width="100%" [ngSrc]="filme.poster!" width="180" height="300"  class="img-fluid rounded poster-card"
-            alt="Imagem do filme">
+          <img (click)="mostrarDetalhes(filme)" [ngSrc]="filme.poster!" width="180" height="300"
+            class="img-fluid rounded poster-card" alt="Imagem do filme">
         </div>
         <div class="col-lg-9 col-md-6 col-sm-8 pt-2 card-pequeno">
-          <h5>{{filme.titulo}}</h5><hr class="m-0">
-          <p class="fs-6">{{ filme?.resumo | slice:0:120 }}
-            {{ filme?.resumo!.length > 100 ? "..." : "" }}</p>
+          <h5 class="text-white">{{filme.titulo}}</h5>
+          <hr class="m-0">
+          <a  
+          [routerLink]="['/detalhes',filme.id]" class="fs-6 resumo text-white link-offset-2 link-underline link-underline-opacity-0">{{ filme?.resumo | slice:0:120 }}
+            {{ filme?.resumo!.length > 100 ? "..." : "" }}</a>
         </div>
       </div>
     </div>
   </div>
 </ng-template>
-
-
-
-
-

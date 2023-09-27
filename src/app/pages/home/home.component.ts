@@ -11,8 +11,6 @@ import { FilmeHttpService } from 'src/app/services/http/filme-http.service';
 })
 export class HomeComponent implements OnInit {
 
-  nomeParaPesquisar?: string
-
   filmesPopulares?: Filme[]
   filmesNovidades?: Filme[]
   filmesRecomendados?: Filme[]
@@ -35,10 +33,6 @@ export class HomeComponent implements OnInit {
 
   mostrarDetalhes(filme: Filme) {
     this.router.navigate(['detalhes', filme.id])
-  }
-
-  buscarPorNome() {
-    this.router.navigate(['lista/pesquisa', this.nomeParaPesquisar, '1'])
   }
 
 }

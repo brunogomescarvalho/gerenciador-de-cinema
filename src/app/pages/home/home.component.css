@@ -15,11 +15,18 @@
 }
 
 .card-pequeno{
-    text-align: justify;
     border: solid 1px  rgb(255, 255, 255);
     border-left: none;
     border-radius: 5px;
     color: rgb(255, 254, 254);
+}
+
+.resumo{
+    text-align: justify;
+}
+
+.resumo:hover{
+  font-size: large!important;
 }
 
 

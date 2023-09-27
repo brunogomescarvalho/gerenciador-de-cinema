@@ -10,7 +10,7 @@
             class="card-img-top imagem img rounded">
         <div class="card-body p-0">
             <p class="text-center">
-                <a (click)="enviarFilme(filme)"
+                <a  [routerLink]="['/detalhes',filme.id]" 
                     class="fw-normal fs-5 text-dark link-underline link-underline-opacity-0 link">
                     {{filme.titulo!}}
                 </a>
