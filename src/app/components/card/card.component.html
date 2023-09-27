@@ -1,8 +1,6 @@
 <section class="justify-items-center">
     <div class="card mt-2">
-        <img 
-            ngbTooltip="{{filme.titulo}}" 
-            [openDelay]="800" 
+        <img  
             (click)="enviarFilme(filme)" 
             [ngSrc]="filme.poster!" 
             width="300" 

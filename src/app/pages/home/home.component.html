@@ -44,7 +44,7 @@
     <div *ngFor="let filme of filmesNovidades | slice:0:14" class="card p-0 bg-transparent"
       style="width: 9rem; border:none">
       <img (click)="mostrarDetalhes(filme)" [ngSrc]="filme.poster!" width="150" height="300"  ngbTooltip="{{filme.titulo}}" 
-            [openDelay]="800" 
+            [openDelay]="800" placement="bottom"
         class="img-fluid rounded poster-card" alt="Imagem do filme">
     </div>
   </div>
@@ -61,7 +61,7 @@
     <div *ngFor="let filme of filmesPopulares | slice:0:9" class="card p-0 bg-transparent"
       style="width: 9rem; border:none">
       <img (click)="mostrarDetalhes(filme)" [ngSrc]="filme.poster!" width="150" height="300" ngbTooltip="{{filme.titulo}}" 
-      [openDelay]="800" 
+      [openDelay]="800" placement="bottom"
         class="img-fluid rounded poster-card" alt="Imagem do filme">
     </div>
   </div>

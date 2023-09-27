@@ -9,9 +9,7 @@ import { FilmeHttpService } from 'src/app/services/http/filme-http.service';
   styleUrls: ['./pesquisa.component.css']
 })
 export class PesquisaComponent implements OnInit {
-
   filmes!: Filme[]
-
   nomePesquisa!: string
 
   constructor(private service: FilmeHttpService, private router: Router, private route: ActivatedRoute) { }

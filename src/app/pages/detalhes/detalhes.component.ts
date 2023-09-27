@@ -12,16 +12,11 @@ import { LocalStorageService } from 'src/app/services/localStorage/local-storage
 })
 export class DetalhesComponent implements OnInit {
   filme?: Filme
-
   favorito: boolean = false;
-
-  trailerUrl?: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl('')
-
   avaliacao: number = 0
-
-  produtor?: string
-
-  diretor?: string
+  diretor?: string;
+  produtor?: string;
+  trailerUrl?: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl('')
 
   constructor(private route: ActivatedRoute, private serviceHttp: FilmeHttpService, private sanitizer: DomSanitizer, private localStorage: LocalStorageService) {
   }
@@ -35,11 +30,11 @@ export class DetalhesComponent implements OnInit {
     this.serviceHttp.obterPorId(id)
       .subscribe(res => {
         this.filme = res;
-        this.trailerUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${this.filme.videos[0]?.key}`)
-        this.avaliacao = parseFloat((this.filme!.avaliacao! / 2).toFixed(2));
         this.favorito = this.localStorage.ehFavorito(this.filme);
-        this.diretor = this.filme.producao?.find(x => x.job == 'Director').name;
-        this.produtor = this.filme.producao?.find(x => x.job == 'Producer').name;
+        this.trailerUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.filme.trailer!)
+        this.avaliacao = parseFloat((this.filme!.avaliacao! / 2).toFixed(2));
+        this.diretor = Array.from(this.filme?.diretores!)[0]
+        this.produtor = Array.from(this.filme?.produtores!)[0]
       })
   }
 

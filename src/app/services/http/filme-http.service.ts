@@ -86,9 +86,10 @@ export class FilmeHttpService {
     return new Filme(
       obj.id,
       obj.title,
+      obj.overview,
       "https://image.tmdb.org/t/p/original/" + obj.poster_path,
-      "https://image.tmdb.org/t/p/original/" + obj.backdrop_path,
-      obj.overview)
+      "https://image.tmdb.org/t/p/original/" + obj.backdrop_path
+    )
 
   }
 
@@ -96,15 +97,15 @@ export class FilmeHttpService {
     return new Filme(
       obj.id,
       obj.title,
+      obj.overview,
       "https://image.tmdb.org/t/p/original" + obj.poster_path,
       "https://image.tmdb.org/t/p/original/" + obj.backdrop_path,
-      obj.overview,
+      "https://www.youtube.com/embed/" + obj.videos.results[0].key,
       obj.release_date,
       obj.vote_average,
-      obj.images,
-      obj.videos.results,
-      obj.credits.cast,
-      obj.credits.crew,
+      obj.credits.cast.map((elenco: any) => elenco.name).slice(0, 10),
+      obj.credits.crew.filter((x: any) => x.job == 'Producer').map((produtor: any) => produtor.name),
+      obj.credits.crew.filter((x: any) => x.job == 'Director').map((diretor: any) => diretor.name),
       obj.vote_count,
       obj.genres,
 
