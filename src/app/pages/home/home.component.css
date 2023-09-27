@@ -1,0 +1,25 @@
+.quadros {
+    border: rgb(60, 53, 53) 1px solid;
+    border-left: none;
+    text-align: justify;
+    border-radius: 5px;
+}
+
+.link:hover {
+    color: rgb(64, 64, 207) !important;
+}
+
+.poster-card:hover {
+    cursor: pointer;
+    border: 2px solid rgb(64, 64, 207);
+}
+
+.card-pequeno{
+    text-align: justify;
+    border: solid 1px  rgb(255, 255, 255);
+    border-left: none;
+    border-radius: 5px;
+    color: rgb(255, 254, 254);
+}
+
+

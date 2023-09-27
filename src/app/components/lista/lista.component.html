@@ -1,0 +1,9 @@
+<section>
+  <div class="container-fluid mt-3">
+    <div class="row d-flex flex-row">
+      <div class="col-lg-2 col-md-4 col-sm-12" *ngFor="let filme of filmes">
+        <app-card (onFilmeSelecionado)="solicitarDetalhes($event)" [filme]="filme"></app-card>
+      </div>
+    </div>
+  </div>
+</section>

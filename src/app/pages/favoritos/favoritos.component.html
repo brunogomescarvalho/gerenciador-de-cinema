@@ -1,0 +1,16 @@
+<div class="container-fluid">
+    <div class="row mt-4">
+        <div class="col">
+            <app-paginacao [collectionSize]="1"></app-paginacao>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h2 class="fs-3 text-secondary fs-italic text-center">Favoritos</h2>
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <app-lista [filmes]="filmes" (onFilmeSelecionado)="obterDetalhes($event)"></app-lista>
+    </div>
+</div>

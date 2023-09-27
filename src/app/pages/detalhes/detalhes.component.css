@@ -1,0 +1,28 @@
+i {
+    position: relative;
+    display: inline-block;
+    font-size: 2.0rem;
+    padding-right: 0.1rem;
+    color: #d3d3d3;
+}
+
+.filled {
+    color: rgb(51, 54, 63);
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.resumo {
+    text-align: justify;
+}
+
+.coracao {
+    color: black !important
+}
+
+.coracao:hover {
+    cursor: pointer;
+    color: gray !important;
+}

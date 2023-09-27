@@ -1,0 +1,20 @@
+<section class="justify-items-center">
+    <div class="card mt-2">
+        <img 
+            ngbTooltip="{{filme.titulo}}" 
+            [openDelay]="800" 
+            (click)="enviarFilme(filme)" 
+            [ngSrc]="filme.poster!" 
+            width="300" 
+            height="400" 
+            class="card-img-top imagem img rounded">
+        <div class="card-body p-0">
+            <p class="text-center">
+                <a (click)="enviarFilme(filme)"
+                    class="fw-normal fs-5 text-dark link-underline link-underline-opacity-0 link">
+                    {{filme.titulo!}}
+                </a>
+            </p>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,12 @@
+@import url('../node_modules/bootstrap-icons/font/bootstrap-icons.css');
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English&display=swap');
+
+body {
+    background: rgb(202,216,216);
+    background: linear-gradient(173deg, rgba(202,216,216,1) 10%, rgba(233,246,240,1) 21%, rgba(184,240,238,1) 33%, rgba(222,233,214,1) 43%, rgba(103,139,196,1) 53%, rgba(51,53,82,1) 86%, rgba(47,39,23,1) 99%);
+}
+*{
+    font-family: 'IM Fell English', serif;
+    font-size: 16px;
+}
+

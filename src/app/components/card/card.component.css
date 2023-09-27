@@ -1,0 +1,16 @@
+.imagem:hover {
+  cursor: pointer;
+  border: 3px #0d6efd solid;
+ 
+}
+
+.card {
+  border: none;
+  background-color: transparent;
+}
+
+.link:hover {
+  cursor: pointer;
+  font-size: large !important;
+}
+

@@ -1,0 +1,47 @@
+<section>
+  <div class="container-fluid">
+    <app-navbar></app-navbar>
+    <ng-container *ngTemplateOutlet="formularioPesquisaTemplate"></ng-container>
+    <router-outlet></router-outlet>
+    <ng-container *ngTemplateOutlet="rodapeTemplate"></ng-container>
+  </div>
+</section>
+
+
+<!-- Formulário de Pesquisa Template -->
+<ng-template #formularioPesquisaTemplate>
+  <form (ngSubmit)="onSubmit()" class="d-flex col-lg-4 col-sm-12 mx-4 mb-3 justify-content-center" role="search">
+    <input [(ngModel)]="nome" name="nome" class="form-control me-2" type="search"
+      placeholder="Encontre seu filme favorito aqui..." aria-label="Search">
+    <button class="btn btn-outline-primary" type="submit">Buscar</button>
+  </form>
+</ng-template>
+
+
+<!-- Rodapé Template -->
+<ng-template #rodapeTemplate>
+  <footer class="bg-dark text-white mt-3 pt-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <p class="lead">
+            Copyright &copy; 2023 AP_Movies
+          </p>
+        </div>
+        <div class="col-md-6">
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <i class="text-white bi bi-facebook"></i>
+            </li>
+            <li class="list-inline-item">
+              <i class="text-white bi bi-instagram"></i>
+            </li>
+            <li class="list-inline-item">
+              <i class="text-white bi bi-whatsapp"></i>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+</ng-template>
