@@ -29,9 +29,8 @@ export class FilmeHttpService {
     return this.httpClient.get(url, this.obterAutorizacao())
       .pipe(
         map((x: any) => x.results),
-        map((o: any[]) => this.mapearListaFilmes(o)),
+        map((o: any[]) => this.mapeador.mapearListaFilmes(o)),
       )
-
   }
 
   public obterFilmesPopulares(page: string) {
@@ -55,10 +54,15 @@ export class FilmeHttpService {
     return forkJoin([forkJoin(filmes), forkJoin(elenco)]);
   }
 
-  public obterPorPesquisa(nome: string, page: string) {
-    const url = `https://api.themoviedb.org/3/search/movie?query=${nome}&language=pt-BR&page=${page}`;
-    return this.obterListagem(url)
+  public obterPorPesquisa(nome: string, page: string): Observable<any> {
+    const url = `https://api.themoviedb.org/3/search/multi?query=${nome}&language=pt-br&page${page}`;
+  
+    return this.httpClient.get(url, this.obterAutorizacao()).pipe(
+      map((data: any) => data.results),
+      map((results: any[]) => this.mapeador.mapearPesquisa(results))
+    );
   }
+  
 
   public obterPorId(id: number) {
     const url = this.apiUrl + id +
@@ -74,13 +78,6 @@ export class FilmeHttpService {
     return `${this.apiUrl}${tipoBusca}?language=pt-BR&page=${pagina}`
   }
 
-  private mapearListaFilmes(lista: any[]): Filme[] {
-    return lista?.map((o: any) => {
-
-      return this.mapeador.filmeResumido(o)
-    })
-  }
-
   public obterPessoaPorId(id: number) {
     const url = `https://api.themoviedb.org/3/person/` + id +
       '?append_to_response=images,credits&language=pt-BR'
@@ -90,7 +87,6 @@ export class FilmeHttpService {
         map((x: any) => this.mapeador.mapearPessoa(x)),
       )
   }
-
 }
 
 

@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core"
+import { forkJoin } from "rxjs"
 import { Filme } from "src/app/models/filme"
 import { Pessoa } from "src/app/models/pessoa"
 @Injectable({
@@ -45,15 +46,30 @@ export class Mapeador {
             obj.name,
             this.imgUrl + obj.profile_path,
             obj.place_of_birth,
-            obj.credits.cast
+            obj.credits?.cast
                 .filter((poster: any) => poster.poster_path != null)
                 .map((filme: any) =>
                     new Filme(filme.id, filme.title, this.imgUrl + filme.poster_path, filme.overview, this.imgUrl + filme.backdrop_path)
                 ),
             obj.biography,
             obj.birthday,
-            obj.images.profiles
+            obj.images?.profiles
         );
+    }
+
+    public mapearListaFilmes(lista: any[]): Filme[] {
+        return lista?.map((o: any) => { return this.filmeResumido(o) })
+    }
+
+    public mapearListaPessoas(lista: any[]): Pessoa[] {
+        return lista?.map(p => { return this.mapearPessoa(p) })
+    }
+
+    public mapearPesquisa(result: any[]) {
+        const filmes = result.filter(item => item.media_type === 'movie' && item.poster_path != null);
+        const pessoas = result.filter(item => item.media_type === 'person' && item.profile_path != null);
+
+        return [this.mapearListaFilmes(filmes), this.mapearListaPessoas(pessoas)];
     }
 
 
