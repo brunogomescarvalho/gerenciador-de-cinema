@@ -5,7 +5,7 @@
             <div class="row">
                 <div *ngIf="pessoa" class="col-lg-5 col-md-6 col-sm-12 mt-4">
                     <img [ngSrc]="pessoa.poster!" width="400" height="600" class="img-fluid rounded"
-                        alt="Poster da pessoa" priority />
+                        alt="Poster da Pessoa" priority />
                 </div>
                 <div class="col-lg-7 col-md-6 col-sm-12 mt-3">
                     <div class="col text-bg-black">
@@ -14,7 +14,7 @@
                     <hr class="mt-0" />
                     <div class="col">
                         <div class="row m-0">
-                            <div class="col-lg-4 col-sm-12 text-center">
+                            <div class="col-lg-4 col-sm-12 text-center pt-2 m-0">
                                 <p class="fs-5"> {{ pessoa?.localNascimento }}</p>
                                 <p class="fs-5">Local Nascimento</p>
                             </div>
@@ -26,7 +26,7 @@
                                 <p class="fs-5">{{ favorito ? 'Favorito' : 'Adicionar aos Favoritos' }}</p>
                             </div>
                             <div class="col-md-4 col-sm-12 text-center">
-                                <p class="m-2 fs-2 text-center fw-light">{{ pessoa?.dataNascimento | date:'dd-MM-yyyy'}}
+                                <p class="m-0 fs-2 text-center fw-light">{{ pessoa?.dataNascimento | date:'dd-MM-yyyy'}}
                                 </p>
                                 <p *ngIf="pessoa?.dataNascimento" class="fs-5">Data Nascimento</p>
                             </div>
@@ -34,7 +34,7 @@
                         <hr class="mt-0" />
                     </div>
                     <div class="col  px-4 resumo">
-                        <p class="fs-4">{{ pessoa?.biografia }}</p>
+                        <p class="fs-4 text-dark biografia" [ngClass]="{'text-secondary':'pessoa?.biografia == null'}">{{ pessoa?.biografia ? pessoa?.biografia : 'sem informações' }}</p>
                     </div>
 
                     <hr />

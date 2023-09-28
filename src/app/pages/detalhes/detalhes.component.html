@@ -15,11 +15,11 @@
             priority />
           <div class="row justify-content-start">
             <div class="text-center col-lg-4 col-md-6 col-sm-12 mt-4">
-              <span class = "text-secondary fs-5">Produzido por: </span>
+              <span class="text-secondary fs-5">Produzido por: </span>
               <a [routerLink]="['/elenco',produtor?.id]" class="text-secondary fs-5">{{ produtor?.nome }}</a>
             </div>
             <div class="text-center col-lg-4 col-md-6 col-sm-12 mt-4">
-              <span class = "text-secondary fs-5">Dirigido por: </span>
+              <span class="text-secondary fs-5">Dirigido por: </span>
               <a [routerLink]="['/elenco',diretor?.id]" class="text-secondary fs-5">{{ diretor?.nome }}</a>
             </div>
           </div>
@@ -44,7 +44,7 @@
                 <p class="fs-5">{{ favorito ? 'Favorito' : 'Adicionar aos Favoritos' }}</p>
               </div>
               <div class="col-md-4 col-sm-12 text-center">
-                <p class="m-2 fs-2 text-center fw-light">{{ filme?.data | date: 'yyyy' }}</p>
+                <p class="fs-2 text-center fw-light m-0 p-0">{{ filme?.data | date: 'yyyy' }}</p>
                 <p class="fs-5">Lançamento</p>
               </div>
             </div>
