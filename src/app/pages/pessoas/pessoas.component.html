@@ -20,14 +20,15 @@
                             </div>
                             <div class="col-md-4 col-sm-12 text-center">
                                 <p class="m-0">
-                                  <i (click)="adicionarFavoritos()" class="coracao fs-2"
-                                    [class]="favorito === true ? 'bi-heart-fill' : 'bi-heart'"></i>
+                                    <i (click)="adicionarFavoritos()" class="coracao fs-2"
+                                        [class]="favorito === true ? 'bi-heart-fill' : 'bi-heart'"></i>
                                 </p>
                                 <p class="fs-5">{{ favorito ? 'Favorito' : 'Adicionar aos Favoritos' }}</p>
-                              </div>
+                            </div>
                             <div class="col-md-4 col-sm-12 text-center">
-                                <p class="m-2 fs-2 text-center fw-light">{{ pessoa?.dataNascimento | date:'dd-MM-yyyy'}}</p>
-                                <p class="fs-5">Data Nascimento</p>
+                                <p class="m-2 fs-2 text-center fw-light">{{ pessoa?.dataNascimento | date:'dd-MM-yyyy'}}
+                                </p>
+                                <p *ngIf="pessoa?.dataNascimento" class="fs-5">Data Nascimento</p>
                             </div>
                         </div>
                         <hr class="mt-0" />
@@ -35,14 +36,20 @@
                     <div class="col  px-4 resumo">
                         <p class="fs-4">{{ pessoa?.biografia }}</p>
                     </div>
-                    <div class="col px-4 pb-1">
-                     
-                    </div>
+
                     <hr />
                 </div>
             </div>
-          
         </div>
     </div>
-    
+    <div class="container-fluid">
+        <hr>
+        <div class="row">
+            <h3 class="text-dark text-center">Obras</h3>
+            <app-lista [dados]="pessoa?.obras"
+                (onCardSelecionado)="obterDetalhesFilmesRelacionados($event)"></app-lista>
+
+        </div>
+    </div>
+
 </section>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IFavorito } from 'src/app/models/filme';
+import { Filme, IFavorito } from 'src/app/models/filme';
 import { Pessoa } from 'src/app/models/pessoa';
 import { FilmeHttpService } from 'src/app/services/http/filme-http.service';
 import { LocalStorageService } from 'src/app/services/localStorage/local-storage.service';
@@ -14,13 +14,15 @@ export class PessoasComponent implements OnInit {
   pessoa?: Pessoa
   favorito: boolean = false;
 
-  constructor(private route: ActivatedRoute, private router: Router, private service: FilmeHttpService, private localStorage:LocalStorageService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private service: FilmeHttpService, private localStorage: LocalStorageService) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.params['id']
 
     this.service.obterPessoaPorId(id)
-      .subscribe(pessoa => { this.pessoa = pessoa; console.log(pessoa) })
+      .subscribe(pessoa => {
+        this.pessoa = pessoa; console.log(pessoa)
+      })
 
   }
 
@@ -30,10 +32,14 @@ export class PessoasComponent implements OnInit {
     let filme: IFavorito = {
       id: this.pessoa!.id,
       nome: this.pessoa!.nome,
-      tipo:'elenco'
+      tipo: 'elenco'
     }
 
     this.localStorage.favoritar(filme)
+  }
+
+  obterDetalhesFilmesRelacionados(filme: Filme) {
+    this.router.navigate(['/detalhes', filme.id])
   }
 
 }

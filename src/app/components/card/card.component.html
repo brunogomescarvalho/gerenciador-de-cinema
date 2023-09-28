@@ -1,6 +1,8 @@
 <section class="justify-items-center">
     <div class="card mt-2">
         <img  
+        [ngbTooltip]="model.nome"
+        [openDelay]="200"
             (click)="enviarSelecionado(model)" 
             [ngSrc]="model.poster!" 
             width="300" 
