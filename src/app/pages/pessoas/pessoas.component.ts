@@ -21,7 +21,8 @@ export class PessoasComponent implements OnInit {
 
     this.service.obterPessoaPorId(id)
       .subscribe(pessoa => {
-        this.pessoa = pessoa; console.log(pessoa)
+        this.pessoa = pessoa;
+        this.favorito = this.localStorage.ehFavorito(this.pessoa);
       })
 
   }

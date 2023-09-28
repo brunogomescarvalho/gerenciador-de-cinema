@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, forkJoin, map } from 'rxjs';
+import { Observable, combineLatest, forkJoin, map } from 'rxjs';
 import { Filme, IFavorito } from '../../models/filme';
 import { environment } from 'src/environments/environment';
 import { Mapeador } from '../mapeadores/mapeador';
@@ -48,21 +48,24 @@ export class FilmeHttpService {
     return this.obterListagem(url)
   }
 
-  public obterFavoritos(favoritos: IFavorito[]): Observable<[Filme[], Pessoa[]]> {
-    const filmes = favoritos.filter(x => x.tipo == 'filme').map((x) => this.obterPorId(x.id));
-    const elenco = favoritos.filter(x => x.tipo == 'elenco').map((x) => this.obterPessoaPorId(x.id));
-    return forkJoin([forkJoin(filmes), forkJoin(elenco)]);
+  public obterFavoritos(favoritos: IFavorito[]) {
+    const filmes = favoritos.filter(x => x.tipo == 'filme').map((f) => this.obterPorId(f.id))
+    return forkJoin(filmes)
+  }
+  public obterElencoFavoritos(favoritos: IFavorito[]) {
+    const elenco = favoritos.filter(x => x.tipo == 'elenco').map((f) => this.obterPessoaPorId(f.id))
+    return forkJoin(elenco)
   }
 
   public obterPorPesquisa(nome: string, page: string): Observable<any> {
     const url = `https://api.themoviedb.org/3/search/multi?query=${nome}&language=pt-br&page${page}`;
-  
+
     return this.httpClient.get(url, this.obterAutorizacao()).pipe(
       map((data: any) => data.results),
       map((results: any[]) => this.mapeador.mapearPesquisa(results))
     );
   }
-  
+
 
   public obterPorId(id: number) {
     const url = this.apiUrl + id +

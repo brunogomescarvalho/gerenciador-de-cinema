@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable, forkJoin, of } from 'rxjs';
 import { Filme } from 'src/app/models/filme';
 import { Pessoa } from 'src/app/models/pessoa';
 import { FilmeHttpService } from 'src/app/services/http/filme-http.service';
@@ -31,18 +31,16 @@ export class FavoritosComponent implements OnInit {
 
   }
 
-  private obterFavoritos(): Observable<Filme[]> {
+  private obterFavoritos() {
     const favoritos = this.localStorage.obterDados();
 
-    if (Array.isArray(favoritos)) {
-      this.service.obterFavoritos(favoritos)
-        .subscribe(
-          ([filmes, elenco]) => {
-            filmes.map(f => { this.filmes.push(f), this.favoritos.push(f) })
-            elenco.map(e => { this.elenco.push(e), this.favoritos.push(e) })
-          })
-    }
-    return of([]);
+    forkJoin({
+      filmes: this.service.obterFavoritos(favoritos),
+      elenco: this.service.obterElencoFavoritos(favoritos)
+    }).subscribe(res => {
+      this.filmes = res.filmes; this.filmes.map(f => this.favoritos.push(f))
+      this.elenco = res.elenco; this.elenco.map(f => this.favoritos.push(f))
+    })
   }
 
 }

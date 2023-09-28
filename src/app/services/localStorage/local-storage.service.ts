@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Filme, IFavorito } from 'src/app/models/filme';
 import { ModelBase } from 'src/app/models/modelBase';
+import { Pessoa } from 'src/app/models/pessoa';
 
 @Injectable({
   providedIn: 'root'
@@ -34,10 +35,10 @@ export class LocalStorageService {
     this.salvarDados(dados)
   }
 
-  ehFavorito(filme: ModelBase) {
+  ehFavorito(dado: Filme | Pessoa) {
     const dados = this.obterDados() as IFavorito[];
 
-    return dados.find(x => x.id === filme.id) != null
+    return dados.find(x => x.id === dado.id) != null
 
   }
 
