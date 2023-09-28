@@ -4,7 +4,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { DetalhesComponent } from './pages/detalhes/detalhes.component';
 import { FavoritosComponent } from './pages/favoritos/favoritos.component';
 import { PesquisaComponent } from './pages/pesquisa/pesquisa.component';
-import { ListagemComponent } from './pages/listagem/listagem.component';
+import { FilmesComponent } from './pages/filmes/filmes.component';
+import { PessoasComponent } from './pages/pessoas/pessoas.component';
 
 const routes: Routes = [
   {
@@ -20,13 +21,17 @@ const routes: Routes = [
     path: 'detalhes/:id',
     component: DetalhesComponent
   },
+  {
+    path: 'elenco/:id',
+    component: PessoasComponent
+  },
 
   {
     path: 'lista',
     children: [
       {
         path: ':categoria/:pagina',
-        component: ListagemComponent
+        component: FilmesComponent
       },
       {
         path: 'pesquisa/:nome/:pagina',

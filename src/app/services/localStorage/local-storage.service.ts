@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Filme, IFilmeFavorito } from 'src/app/models/filme';
+import { Filme, IFavorito } from 'src/app/models/filme';
+import { ModelBase } from 'src/app/models/modelBase';
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +17,12 @@ export class LocalStorageService {
     return dados ? JSON.parse(dados) : [];
   }
 
-  private salvarDados(dados: IFilmeFavorito[]) {
+  private salvarDados(dados: IFavorito[]) {
     localStorage.setItem(this.local, JSON.stringify(dados))
   }
 
-  favoritar(filme: IFilmeFavorito) {
-    const dados = this.obterDados() as IFilmeFavorito[];
+  favoritar(filme: IFavorito) {
+    const dados = this.obterDados() as IFavorito[];
 
     const index = dados.findIndex(o => filme.id == o.id);
 
@@ -33,8 +34,8 @@ export class LocalStorageService {
     this.salvarDados(dados)
   }
 
-  ehFavorito(filme: Filme) {
-    const dados = this.obterDados() as IFilmeFavorito[];
+  ehFavorito(filme: ModelBase) {
+    const dados = this.obterDados() as IFavorito[];
 
     return dados.find(x => x.id === filme.id) != null
 

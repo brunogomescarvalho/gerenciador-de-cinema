@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs';
+import { Parametro } from 'src/app/models/Parametro';
 import { Filme } from 'src/app/models/filme';
 import { FilmeHttpService } from 'src/app/services/http/filme-http.service';
-import { Parametro } from 'src/app/models/Parametro';
 
 @Component({
-  selector: 'app-listagem',
-  templateUrl: './listagem.component.html',
-  styleUrls: ['./listagem.component.css']
+  selector: 'app-filmes',
+  templateUrl: './filmes.component.html',
+  styleUrls: ['./filmes.component.css']
 })
-export class ListagemComponent implements OnInit {
+export class FilmesComponent implements OnInit {
 
   filmes!: Filme[]
 

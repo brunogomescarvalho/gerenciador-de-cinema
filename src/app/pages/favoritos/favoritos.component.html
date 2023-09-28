@@ -10,7 +10,9 @@
             <hr>
         </div>
     </div>
-    <div class="row">
-        <app-lista [filmes]="filmes" (onFilmeSelecionado)="obterDetalhes($event)"></app-lista>
+    <div class="row d-flex flex-column">
+       <div class="col">
+        <app-lista [dados]="favoritos" (onCardSelecionado)="obterDetalhes($event)"></app-lista>
+       </div>
     </div>
 </div>

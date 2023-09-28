@@ -1,15 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, forkJoin, map } from 'rxjs';
-import { Filme, IFilmeFavorito } from '../../models/filme';
+import { Filme, IFavorito } from '../../models/filme';
 import { environment } from 'src/environments/environment';
+import { Mapeador } from '../mapeadores/mapeador';
+import { Pessoa } from 'src/app/models/pessoa';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FilmeHttpService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private mapeador: Mapeador) { }
 
   private apiUrl: string = `https://api.themoviedb.org/3/movie/`;
 
@@ -47,9 +49,10 @@ export class FilmeHttpService {
     return this.obterListagem(url)
   }
 
-  public obterFavoritos(favoritos: IFilmeFavorito[]): Observable<Filme[]> {
-    const chamadasHTTP = favoritos.map((x) => this.obterPorId(x.id));
-    return forkJoin(chamadasHTTP);
+  public obterFavoritos(favoritos: IFavorito[]): Observable<[Filme[], Pessoa[]]> {
+    const filmes = favoritos.filter(x => x.tipo == 'filme').map((x) => this.obterPorId(x.id));
+    const elenco = favoritos.filter(x => x.tipo == 'elenco').map((x) => this.obterPessoaPorId(x.id));
+    return forkJoin([forkJoin(filmes), forkJoin(elenco)]);
   }
 
   public obterPorPesquisa(nome: string, page: string) {
@@ -63,7 +66,7 @@ export class FilmeHttpService {
 
     return this.httpClient.get(url, this.obterAutorizacao())
       .pipe(
-        map((x: any) => this.mapearFilme(x)),
+        map((x: any) => this.mapeador.filmeDetalhes(x)),
       )
   }
 
@@ -74,43 +77,20 @@ export class FilmeHttpService {
   private mapearListaFilmes(lista: any[]): Filme[] {
     return lista?.map((o: any) => {
 
-      return this.obterFilmeResumido(o)
+      return this.mapeador.filmeResumido(o)
     })
   }
 
-  private mapearFilme(obj: any) {
-    return this.obterFilmeDetalhes(obj);
+  public obterPessoaPorId(id: number) {
+    const url = `https://api.themoviedb.org/3/person/` + id +
+      '?append_to_response=images,credits&language=pt-BR'
+
+    return this.httpClient.get(url, this.obterAutorizacao())
+      .pipe(
+        map((x: any) => this.mapeador.mapearPessoa(x)),
+      )
   }
 
-  private obterFilmeResumido(obj: any) {
-    return new Filme(
-      obj.id,
-      obj.title,
-      obj.overview,
-      "https://image.tmdb.org/t/p/original/" + obj.poster_path,
-      "https://image.tmdb.org/t/p/original/" + obj.backdrop_path
-    )
-
-  }
-
-  private obterFilmeDetalhes(obj: any) {
-    return new Filme(
-      obj.id,
-      obj.title,
-      obj.overview,
-      "https://image.tmdb.org/t/p/original" + obj.poster_path,
-      "https://image.tmdb.org/t/p/original/" + obj.backdrop_path,
-      "https://www.youtube.com/embed/" + obj.videos?.results[0]?.key,
-      obj.release_date,
-      obj.vote_average,
-      obj.credits.cast.map((elenco: any) => elenco.name).slice(0, 10),
-      obj.credits.crew.filter((x: any) => x.job == 'Producer').map((produtor: any) => produtor.name),
-      obj.credits.crew.filter((x: any) => x.job == 'Director').map((diretor: any) => diretor.name),
-      obj.vote_count,
-      obj.genres,
-
-    )
-  }
 }
 
 

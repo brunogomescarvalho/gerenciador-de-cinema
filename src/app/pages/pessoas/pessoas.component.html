@@ -1,0 +1,48 @@
+<section>
+    <div class="container my-2">
+        <hr />
+        <div class="row justify-content-around">
+            <div class="row">
+                <div *ngIf="pessoa" class="col-lg-5 col-md-6 col-sm-12 mt-4">
+                    <img [ngSrc]="pessoa.poster!" width="400" height="600" class="img-fluid rounded"
+                        alt="Poster da pessoa" priority />
+                </div>
+                <div class="col-lg-7 col-md-6 col-sm-12 mt-3">
+                    <div class="col text-bg-black">
+                        <p class="fs-3 text-center">{{ pessoa?.nome }}</p>
+                    </div>
+                    <hr class="mt-0" />
+                    <div class="col">
+                        <div class="row m-0">
+                            <div class="col-lg-4 col-sm-12 text-center">
+                                <p class="fs-5"> {{ pessoa?.localNascimento }}</p>
+                                <p class="fs-5">Local Nascimento</p>
+                            </div>
+                            <div class="col-md-4 col-sm-12 text-center">
+                                <p class="m-0">
+                                  <i (click)="adicionarFavoritos()" class="coracao fs-2"
+                                    [class]="favorito === true ? 'bi-heart-fill' : 'bi-heart'"></i>
+                                </p>
+                                <p class="fs-5">{{ favorito ? 'Favorito' : 'Adicionar aos Favoritos' }}</p>
+                              </div>
+                            <div class="col-md-4 col-sm-12 text-center">
+                                <p class="m-2 fs-2 text-center fw-light">{{ pessoa?.dataNascimento | date:'dd-MM-yyyy'}}</p>
+                                <p class="fs-5">Data Nascimento</p>
+                            </div>
+                        </div>
+                        <hr class="mt-0" />
+                    </div>
+                    <div class="col  px-4 resumo">
+                        <p class="fs-4">{{ pessoa?.biografia }}</p>
+                    </div>
+                    <div class="col px-4 pb-1">
+                     
+                    </div>
+                    <hr />
+                </div>
+            </div>
+          
+        </div>
+    </div>
+    
+</section>

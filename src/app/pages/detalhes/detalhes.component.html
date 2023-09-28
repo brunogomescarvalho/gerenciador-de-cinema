@@ -5,42 +5,41 @@
       <div class="row">
         <div class="col d-flex justify-content-around align-items-center">
           <div class="p-1 text-center" *ngFor="let ator of filme?.elenco | slice:0:5">
-            <span class="fs-4 fw-normal text-secondary">{{ ator }}</span>
+            <a [routerLink]="['/elenco',ator.id]" class="fs-4 fw-normal text-secondary">{{ ator?.nome }}</a>
           </div>
         </div>
       </div>
       <div class="row">
-        <div *ngIf="filme"class="col-lg-5 col-md-6 col-sm-12 mt-4">
-          <img [ngSrc]="filme.poster!" width="400" height="600" class="img-fluid rounded" alt="Poster do Filme" priority/>
+        <div *ngIf="filme" class="col-lg-5 col-md-6 col-sm-12 mt-4">
+          <img [ngSrc]="filme.poster!" width="400" height="600" class="img-fluid rounded" alt="Poster do Filme"
+            priority />
           <div class="row justify-content-start">
             <div class="text-center col-lg-4 col-md-6 col-sm-12 mt-4">
-              <p class="text-white fs-5">Produzido por: {{ produtor }}</p>
+              <span class = "text-secondary fs-5">Produzido por: </span>
+              <a [routerLink]="['/elenco',produtor?.id]" class="text-secondary fs-5">{{ produtor?.nome }}</a>
             </div>
             <div class="text-center col-lg-4 col-md-6 col-sm-12 mt-4">
-              <p class="text-white fs-5">Dirigido por: {{ diretor }}</p>
+              <span class = "text-secondary fs-5">Dirigido por: </span>
+              <a [routerLink]="['/elenco',diretor?.id]" class="text-secondary fs-5">{{ diretor?.nome }}</a>
             </div>
           </div>
         </div>
         <div class="col-lg-7 col-md-6 col-sm-12 mt-3">
           <div class="col text-bg-black">
-            <p class="fs-3 text-center">{{ filme?.titulo }}</p>
+            <p class="fs-3 text-center">{{ filme?.nome }}</p>
           </div>
           <hr class="mt-0" />
           <div class="col">
             <div class="row m-0">
               <div class="col-lg-4 col-sm-12 text-center">
-                <ngb-rating
-                  class="m-0"
-                  [(rate)]="avaliacao"
-                  [starTemplate]="t"
-                  [readonly]="true"
-                  [max]="5"
-                ></ngb-rating>
+                <ngb-rating class="m-0" [(rate)]="avaliacao" [starTemplate]="t" [readonly]="true"
+                  [max]="5"></ngb-rating>
                 <p class="fs-5">Avaliação {{ avaliacao }}</p>
               </div>
               <div class="col-md-4 col-sm-12 text-center">
                 <p class="m-0">
-                  <i (click)="adicionarFavoritos()" class="coracao" [class]="favorito === true ? 'bi-heart-fill' : 'bi-heart'"></i>
+                  <i (click)="adicionarFavoritos()" class="coracao"
+                    [class]="favorito === true ? 'bi-heart-fill' : 'bi-heart'"></i>
                 </p>
                 <p class="fs-5">{{ favorito ? 'Favorito' : 'Adicionar aos Favoritos' }}</p>
               </div>
@@ -66,6 +65,11 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="row">
+    <hr>
+    <p class="fs-3 text-white text-center">Elenco</p>
+    <app-lista [dados]="elenco!" (onCardSelecionado)="irParaDetalhes($event)"></app-lista>
   </div>
 </section>
 

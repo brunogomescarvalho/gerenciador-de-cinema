@@ -25,7 +25,7 @@
       <div class="img-wrapper d-flex">
         <img [ngSrc]="filme.backdrop!" width="300" height="500" class="d-block w-100" alt="Random first slide" />
         <div class="carousel-caption">
-          <h3>{{ filmesNovidades[i].titulo }}</h3>
+          <h3>{{ filmesNovidades[i].nome }}</h3>
         </div>
       </div>
     </ng-template>
@@ -43,7 +43,7 @@
   <div class="row d-flex justify-content-center gap-2">
     <div *ngFor="let filme of filmesNovidades | slice:0:14" class="card p-0 bg-transparent"
       style="width: 9rem; border:none">
-      <img (click)="mostrarDetalhes(filme)" [ngSrc]="filme.poster!" width="150" height="300"  ngbTooltip="{{filme.titulo}}" 
+      <img (click)="mostrarDetalhes(filme)" [ngSrc]="filme.poster!" width="150" height="300"  ngbTooltip="{{filme.nome}}" 
             [openDelay]="800" placement="bottom"
         class="img-fluid rounded poster-card" alt="Imagem do filme">
     </div>
@@ -60,7 +60,7 @@
   <div class="row d-flex justify-content-center gap-2">
     <div *ngFor="let filme of filmesPopulares | slice:0:9" class="card p-0 bg-transparent"
       style="width: 9rem; border:none">
-      <img (click)="mostrarDetalhes(filme)" [ngSrc]="filme.poster!" width="150" height="300" ngbTooltip="{{filme.titulo}}" 
+      <img (click)="mostrarDetalhes(filme)" [ngSrc]="filme.poster!" width="150" height="300" ngbTooltip="{{filme.nome}}" 
       [openDelay]="800" placement="bottom"
         class="img-fluid rounded poster-card" alt="Imagem do filme">
     </div>
@@ -82,7 +82,7 @@
             class="img-fluid rounded poster-card" alt="Imagem do filme">
         </div>
         <div class="col-lg-9 col-md-6 col-sm-8 pt-2 card-pequeno">
-          <h5 class="text-white">{{filme.titulo}}</h5>
+          <h5 class="text-white">{{filme.nome}}</h5>
           <hr class="m-0">
           <a  
           [routerLink]="['/detalhes',filme.id]" class="fs-6 resumo text-white link-offset-2 link-underline link-underline-opacity-0">{{ filme?.resumo | slice:0:120 }}

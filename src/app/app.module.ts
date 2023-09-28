@@ -13,8 +13,9 @@ import { FavoritosComponent } from './pages/favoritos/favoritos.component';
 import { ListaComponent } from './components/lista/lista.component';
 import { PesquisaComponent } from './pages/pesquisa/pesquisa.component';
 import { FormsModule } from '@angular/forms';
-import { ListagemComponent } from './pages/listagem/listagem.component';
 import { NgOptimizedImage } from '@angular/common';
+import { PessoasComponent } from './pages/pessoas/pessoas.component';
+import { FilmesComponent } from './pages/filmes/filmes.component';
 
 
 
@@ -29,7 +30,8 @@ import { NgOptimizedImage } from '@angular/common';
     HomeComponent,
     FavoritosComponent,
     PesquisaComponent,
-    ListagemComponent,
+    PessoasComponent,
+    FilmesComponent,
   ],
   imports: [
     BrowserModule,

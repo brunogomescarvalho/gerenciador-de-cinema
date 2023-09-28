@@ -1,19 +1,22 @@
-export interface IFilmeFavorito {
+import { Pessoa } from "./pessoa";
+
+export interface IFavorito {
     id: number
-    titulo: string
+    nome: string
+    tipo: string
 }
 
 export class Filme {
-    id: number;
-    titulo: string;
-    poster: string;
+    id!: number;
+    nome!: string;
+    poster!: string;
     backdrop?: string;
     data?: string;
     avaliacao?: number;
     trailer?: string;
-    elenco?: string[];
-    produtores?: string[];
-    diretores?: string[];
+    elenco?: Pessoa[];
+    produtores?: Pessoa[];
+    diretores?: Pessoa[];
     votos?: number
     generos?: any[];
     resumo?: string
@@ -21,20 +24,21 @@ export class Filme {
     constructor(
         id: number,
         titulo: string,
-        resumo: string,
         poster: string,
+        resumo: string,
         backdrop: string,
         trailer?: string,
         data?: string,
         avaliacao?: number,
-        elenco?: string[],
-        produtores?: string[],
-        diretores?: string[],
+        elenco?: Pessoa[],
+        produtores?: Pessoa[],
+        diretores?: Pessoa[],
         votos?: number,
         generos?: any,
     ) {
+      
         this.id = id;
-        this.titulo = titulo;
+        this.nome = titulo;
         this.poster = poster;
         this.backdrop = backdrop;
         this.resumo = resumo

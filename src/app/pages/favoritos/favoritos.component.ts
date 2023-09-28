@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { Filme } from 'src/app/models/filme';
+import { Pessoa } from 'src/app/models/pessoa';
 import { FilmeHttpService } from 'src/app/services/http/filme-http.service';
 import { LocalStorageService } from 'src/app/services/localStorage/local-storage.service';
 
@@ -12,27 +13,36 @@ import { LocalStorageService } from 'src/app/services/localStorage/local-storage
 })
 export class FavoritosComponent implements OnInit {
 
-  filmes!: Filme[]
+  favoritos: Filme[] & Pessoa[] = []
+  filmes: Filme[] = [];
+  elenco: Pessoa[] = [];
 
   constructor(private localStorage: LocalStorageService, private service: FilmeHttpService, private router: Router) { }
 
   ngOnInit(): void {
-    this.obterFavoritos().subscribe(res => this.filmes = res )
+    this.obterFavoritos();
   }
 
-  public obterDetalhes(filme: Filme) {
-    this.router.navigate(['detalhes', filme.id])
-  }
+  public obterDetalhes(dado: Filme | Pessoa) {
+    if (this.filmes.includes(dado))
+      this.router.navigate(['detalhes', dado.id])
+    else
+      this.router.navigate(['elenco', dado.id])
 
+  }
 
   private obterFavoritos(): Observable<Filme[]> {
     const favoritos = this.localStorage.obterDados();
-  
+
     if (Array.isArray(favoritos)) {
-      return this.service.obterFavoritos(favoritos);
+      this.service.obterFavoritos(favoritos)
+        .subscribe(
+          ([filmes, elenco]) => {
+            filmes.map(f => { this.filmes.push(f), this.favoritos.push(f) })
+            elenco.map(e => { this.elenco.push(e), this.favoritos.push(e) })
+          })
     }
-  
     return of([]);
   }
-  
+
 }
