@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Filme, IFavorito } from 'src/app/models/filme';
-import { ModelBase } from 'src/app/models/modelBase';
 import { Pessoa } from 'src/app/models/pessoa';
 
 @Injectable({

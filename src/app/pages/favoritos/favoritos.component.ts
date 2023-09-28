@@ -13,7 +13,7 @@ import { LocalStorageService } from 'src/app/services/localStorage/local-storage
 })
 export class FavoritosComponent implements OnInit {
 
-  favoritos: Filme[] & Pessoa[] = []
+  favoritos: Filme[] | Pessoa[] = []
   filmes: Filme[] = [];
   elenco: Pessoa[] = [];
 
@@ -33,14 +33,10 @@ export class FavoritosComponent implements OnInit {
 
   private obterFavoritos() {
     const favoritos = this.localStorage.obterDados();
-
-    forkJoin({
-      filmes: this.service.obterFavoritos(favoritos),
-      elenco: this.service.obterElencoFavoritos(favoritos)
-    }).subscribe(res => {
-      this.filmes = res.filmes; this.filmes.map(f => this.favoritos.push(f))
-      this.elenco = res.elenco; this.elenco.map(f => this.favoritos.push(f))
-    })
+    this.service.obterFavoritos(favoritos).subscribe(filmes => { this.filmes = filmes; filmes.map(i => this.favoritos.push(i)) })
+    this.service.obterElencoFavoritos(favoritos).subscribe(elenco => { this.elenco = elenco; elenco.map(i => this.favoritos.push(i)) })
   }
 
 }
+
+

@@ -9,7 +9,7 @@ import { Pessoa } from 'src/app/models/pessoa';
 })
 export class ListaComponent {
 
-  @Input({ required: true }) dados!: Pessoa[] & Filme[];
+  @Input({ required: true }) dados!: Pessoa[] | Filme[];
 
   @Output() onCardSelecionado = new EventEmitter< Pessoa | Filme>();
 
