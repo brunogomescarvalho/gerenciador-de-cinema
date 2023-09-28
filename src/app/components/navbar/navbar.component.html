@@ -1,22 +1,23 @@
 <nav class="container-fluid navbar bg-transparent mt-2 p-3">
   <div class="container-fluid d-flex justify-content-between flex-wrap col-sm-12">
-   <div>
-    <a [routerLink]="['/home']" routerLinkActive="active">
-      <button class="btn btn-secondary me-2 mb-1" type="button">Home</button>
-    </a>
-    <a [routerLink]="['/lista/novidades/1']" routerLinkActive="active">
-      <button class="btn btn-secondary me-2 mb-1" type="button">Novidades</button>
-    </a>
-    <a [routerLink]="['/lista/populares/1']" routerLinkActive="active">
-      <button class="btn btn-secondary me-2 mb-1" type="button">Populares</button>
-    </a>
-    <a [routerLink]="['/lista/recomendados/1']" routerLinkActive="active">
-      <button class="btn btn-secondary me-2 mb-1" type="button">Recomendados</button>
-    </a>
-    <a [routerLink]="['/lista/favoritos']" routerLinkActive="active">
-      <button class="btn btn-secondary me-2 mb-1" type="button">Favoritos</button>
-    </a>
-   </div>
+    <div >
+      <a [routerLink]="['/home']" routerLinkActive="active">
+        <button class="btn btn-secondary me-2 mb-1" type="button">Home</button>
+      </a>
+      <a [routerLink]="['/lista/novidades/1']" routerLinkActive="active">
+        <button class="btn btn-secondary me-2 mb-1" type="button">Novidades</button>
+      </a>
+      <a [routerLink]="['/lista/populares/1']" routerLinkActive="active">
+        <button class="btn btn-secondary me-2 mb-1" type="button">Populares</button>
+      </a>
+      <a [routerLink]="['/lista/recomendados/1']" routerLinkActive="active">
+        <button class="btn btn-secondary me-2 mb-1" type="button">Recomendados</button>
+      </a>
+      <a [routerLink]="['/lista/favoritos']" routerLinkActive="active">
+        <button class="btn btn-secondary me-2 mb-1" type="button">Favoritos</button>
+      </a>
+    </div>
+
     <p class="mb-0 mx-5 px-5 fs-2 fw-semibold text-secondary">AP Movies</p>
     <ng-container *ngTemplateOutlet="formularioPesquisaTemplate"></ng-container>
   </div>
@@ -31,4 +32,3 @@
     <button class="btn btn-secondary" type="submit">Pesquisar</button>
   </form>
 </ng-template>
-

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Filme } from 'src/app/models/filme';
+import { Pessoa } from 'src/app/models/pessoa';
 
 @Component({
   selector: 'app-lista',
@@ -8,12 +9,12 @@ import { Filme } from 'src/app/models/filme';
 })
 export class ListaComponent {
 
-  @Input({ required: true }) filmes!: Filme[];
+  @Input({ required: true }) dados!: Pessoa[] | Filme[];
 
-  @Output() onFilmeSelecionado = new EventEmitter<Filme>();
+  @Output() onCardSelecionado = new EventEmitter< Pessoa | Filme>();
 
-  public solicitarDetalhes(filme: Filme) {
-    this.onFilmeSelecionado.emit(filme)
+  public solicitarDetalhes(filme:  Pessoa | Filme) {
+    this.onCardSelecionado.emit(filme)
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Filme } from 'src/app/models/filme';
+import { Pessoa } from 'src/app/models/pessoa';
 
 
 @Component({
@@ -10,13 +11,13 @@ import { Filme } from 'src/app/models/filme';
 })
 export class CardComponent {
   
-  @Input() filme!: Filme
+  @Input() model!:  Pessoa | Filme
 
-  @Output() onFilmeSelecionado = new EventEmitter<Filme>();
+  @Output() onCardSelecionado = new EventEmitter< Pessoa | Filme>();
 
-  public enviarFilme(filme: Filme) {
-    this.onFilmeSelecionado.emit(filme)
+  public enviarSelecionado(model:  Pessoa | Filme) {
+    this.onCardSelecionado.emit(model)
   }
 
- 
+
 }

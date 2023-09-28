@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, RouterLinkActive } from '@angular/router';
 
 
 @Component({
@@ -8,12 +8,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-
-  constructor(private router: Router) { }
+  
   nomeParaPesquisar?: string
 
-  
+  constructor(private router: Router) { }
+
   buscarPorNome() {
     this.router.navigate(['lista/pesquisa', this.nomeParaPesquisar, '1'])
   }
+
 }

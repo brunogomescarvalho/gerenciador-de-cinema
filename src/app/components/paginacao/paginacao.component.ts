@@ -18,9 +18,7 @@ export class PaginacaoComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.page = params['pagina'];
-    })
+      this.page =  Number(this.route.snapshot.params['pagina']);
   }
 
   pageChanged(event: number): void {
