@@ -22,14 +22,14 @@ export class FavoritosComponent implements OnInit {
   }
 
   public obterDetalhes(dado: Filme | Pessoa) {
-    if (this.filmes.includes(dado))
-      this.router.navigate(['detalhes', dado.id])
-    else
-      this.router.navigate(['elenco', dado.id])
-
+    const destino = this.filmes.includes(dado) ? 'detalhes' : 'elenco'
+    this.router.navigate([destino, dado.id])
   }
+
   private obterFavoritos() {
     const favoritos = this.localStorage.obterDados();
+
+    if (favoritos.length == 0) return
 
     this.service.obterFavoritos(favoritos).subscribe(filmes => {
       this.filmes = filmes;

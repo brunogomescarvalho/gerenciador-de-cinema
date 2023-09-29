@@ -26,17 +26,15 @@ export class PesquisaComponent implements OnInit {
   }
 
   public obterDetalhes(dado: Filme) {
-    if (this.filmes.includes(dado))
-      this.router.navigate(['detalhes', dado.id])
-    else
-      this.router.navigate(['elenco', dado.id])
+    const destino = this.filmes.includes(dado) ? 'detalhes' : 'elenco'
+    this.router.navigate([destino, dado.id])
 
   }
 
   private obterLista(nome: string, pagina: string) {
     this.service.obterPorPesquisa(nome, pagina).subscribe((data: any) => {
-      this.filmes = data[0];
-      this.pessoas = data[1];
+      this.filmes = data.filmes;
+      this.pessoas = data.pessoas;
       this.resultado = this.filmes.concat(this.pessoas)
     })
   }

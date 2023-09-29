@@ -55,18 +55,21 @@ export class Mapeador {
     }
 
     public mapearListaFilmes(lista: any[]): Filme[] {
-        return lista?.map((o: any) => { return this.filmeResumido(o) })
+        return lista?.map((filme: any) => { return this.filmeResumido(filme) })
     }
 
     public mapearListaPessoas(lista: any[]): Pessoa[] {
-        return lista?.map(p => { return this.mapearPessoa(p) })
+        return lista?.map(pessoa => { return this.mapearPessoa(pessoa) })
     }
 
-    public mapearPesquisa(result: any[]) {
-        const filmes = result.filter(item => item.media_type === 'movie' && item.poster_path != null);
-        const pessoas = result.filter(item => item.media_type === 'person' && item.profile_path != null);
+    public mapearPesquisa(obj: any[]) {
+        const filmes = obj.filter(item => item.media_type === 'movie' && item.poster_path != null);
+        const pessoas = obj.filter(item => item.media_type === 'person' && item.profile_path != null);
 
-        return [this.mapearListaFilmes(filmes), this.mapearListaPessoas(pessoas)];
+        return {
+            filmes: this.mapearListaFilmes(filmes),
+            pessoas: this.mapearListaPessoas(pessoas)
+        };
     }
 
 

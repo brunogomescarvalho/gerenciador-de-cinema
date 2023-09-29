@@ -28,8 +28,8 @@ export class FilmeHttpService {
   private obterListagem(url: string) {
     return this.httpClient.get(url, this.obterAutorizacao())
       .pipe(
-        map((x: any) => x.results),
-        map((o: any[]) => this.mapeador.mapearListaFilmes(o)),
+        map((res: any) => res.results),
+        map((obj: any[]) => this.mapeador.mapearListaFilmes(obj)),
       )
   }
 
@@ -60,11 +60,11 @@ export class FilmeHttpService {
   public obterPorPesquisa(nome: string, page: string): Observable<any> {
     const url = `https://api.themoviedb.org/3/search/multi?query=${nome}&language=pt-br&page=${page}`;
 
-    return this.httpClient.get(url, this.obterAutorizacao()).pipe(
-      map((data: any) => data.results),
-      tap(x=>console.log(x)),
-      map((results: any[]) => this.mapeador.mapearPesquisa(results))
-    );
+    return this.httpClient.get(url, this.obterAutorizacao())
+      .pipe(
+        map((res: any) => res.results),
+        map((obj: any[]) => this.mapeador.mapearPesquisa(obj))
+      );
   }
 
 
@@ -74,7 +74,7 @@ export class FilmeHttpService {
 
     return this.httpClient.get(url, this.obterAutorizacao())
       .pipe(
-        map((x: any) => this.mapeador.filmeDetalhes(x)),
+        map((filme: any) => this.mapeador.filmeDetalhes(filme)),
       )
   }
 
@@ -88,7 +88,7 @@ export class FilmeHttpService {
 
     return this.httpClient.get(url, this.obterAutorizacao())
       .pipe(
-        map((x: any) => this.mapeador.mapearPessoa(x)),
+        map((pessoa: any) => this.mapeador.mapearPessoa(pessoa)),
       )
   }
 }
