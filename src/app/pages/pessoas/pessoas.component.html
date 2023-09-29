@@ -16,7 +16,7 @@
                         <div class="row m-0">
                             <div class="col-lg-4 col-sm-12 text-center pt-2 m-0">
                                 <p class="fs-5"> {{ pessoa?.localNascimento }}</p>
-                                <p  *ngIf="pessoa?.localNascimento" class="fs-5">Local Nascimento</p>
+                                <p *ngIf="pessoa?.localNascimento" class="fs-5">Local Nascimento</p>
                             </div>
                             <div class="col-md-4 col-sm-12 text-center">
                                 <p class="m-0">
@@ -34,22 +34,38 @@
                         <hr class="mt-0" />
                     </div>
                     <div class="col  px-4 resumo">
-                        <p class="fs-4 text-dark biografia" [ngClass]="{'text-secondary':'pessoa?.biografia == null'}">{{ pessoa?.biografia ? pessoa?.biografia : 'sem informações' }}</p>
+                        <p class="fs-4 text-dark biografia" [ngClass]="{'text-secondary':'pessoa?.biografia == null'}">
+                            {{ pessoa?.biografia}}
+                        </p>
+                        <div *ngIf=!pessoa?.biografia>
+                            <div>
+                                <ng-container *ngTemplateOutlet="carouselBackgroud"></ng-container>
+                            </div>
+                        </div>
                     </div>
-
-                    <hr />
                 </div>
+
+                <hr />
             </div>
         </div>
     </div>
+
     <div class="container-fluid">
         <hr>
         <div class="row">
             <h3 class="text-dark text-center">Obras</h3>
             <app-lista [dados]="pessoa?.obras"
                 (onCardSelecionado)="obterDetalhesFilmesRelacionados($event)"></app-lista>
-
         </div>
     </div>
 
 </section>
+
+<ng-template #carouselBackgroud>
+    <ngb-carousel #carousel [interval]="3000">
+        <ng-template ngbSlide *ngFor="let img of imagensAlternativas; index as i">
+            <img [ngSrc]=img width="800" height="600" class="img-fluid rounded" alt="Poster do Filme" />
+        </ng-template>
+    </ngb-carousel>
+    <hr />
+</ng-template>

@@ -13,7 +13,7 @@ import { LocalStorageService } from 'src/app/services/localStorage/local-storage
 export class PessoasComponent implements OnInit {
   pessoa?: Pessoa
   favorito: boolean = false;
-
+  imagensAlternativas: string[] = ['https://image.tmdb.org/t/p/original']
   constructor(private route: ActivatedRoute, private router: Router, private service: FilmeHttpService, private localStorage: LocalStorageService) { }
 
   ngOnInit(): void {
@@ -23,6 +23,7 @@ export class PessoasComponent implements OnInit {
       .subscribe(pessoa => {
         this.pessoa = pessoa;
         this.favorito = this.localStorage.ehFavorito(this.pessoa);
+        this.obterImagemAlternativa()
       })
 
   }
@@ -42,5 +43,10 @@ export class PessoasComponent implements OnInit {
   obterDetalhesFilmesRelacionados(filme: Filme) {
     this.router.navigate(['/detalhes', filme.id])
   }
-
+  obterImagemAlternativa(): void {
+    this.imagensAlternativas = this.pessoa?.obras
+      .filter((x: any) => x.backdrop && !x.backdrop.endsWith('null'))
+      .map((x: any) => x.backdrop).slice(0, 6);
+  }
 }
+

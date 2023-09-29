@@ -54,7 +54,14 @@
             <p class="fs-4">{{ filme?.resumo }}</p>
           </div>
           <div class="col px-4 pb-1">
-            <iframe [src]="trailerUrl" allowfullscreen="true" width="100%" height="290"></iframe>
+            <div *ngIf="!this.filme?.trailer?.endsWith('undefined')">
+              <iframe [src]="trailerUrl" allowfullscreen="true" width="100%" height="290"></iframe>
+            </div>
+
+            <div *ngIf="filme?.trailer?.endsWith('undefined') && !filme?.backdrop?.endsWith('null')">
+              <img [ngSrc]="imagemAlternativa" width="800" height="600" class="img-fluid rounded"
+                alt="Poster do Filme" />
+            </div>
           </div>
           <hr />
           <div class="col d-flex justify-content-center gap-2 pb-3">

@@ -50,7 +50,8 @@ export class Mapeador {
                 ),
             obj.biography,
             obj.birthday,
-            obj.images?.profiles
+            obj.images?.profiles.map((img: any) => img.file_path = this.imgUrl + img.file_path
+            )
         );
     }
 
