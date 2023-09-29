@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Filme } from 'src/app/models/filme';
+import { Filme, IFavorito } from 'src/app/models/filme';
 import { Pessoa } from 'src/app/models/pessoa';
 import { FilmeHttpService } from 'src/app/services/http/filme-http.service';
 import { LocalStorageService } from 'src/app/services/localStorage/local-storage.service';
@@ -11,12 +11,11 @@ import { LocalStorageService } from 'src/app/services/localStorage/local-storage
   styleUrls: ['./favoritos.component.css']
 })
 export class FavoritosComponent implements OnInit {
-
-  favoritos: Filme[] & Pessoa[] = []
+  favoritos: any[] = []
   filmes: Filme[] = [];
   elenco: Pessoa[] = [];
 
-  constructor(private localStorage: LocalStorageService,  private service: FilmeHttpService, private router: Router) { }
+  constructor(private localStorage: LocalStorageService, private service: FilmeHttpService, private router: Router) { }
 
   ngOnInit(): void {
     this.obterFavoritos();
@@ -30,14 +29,8 @@ export class FavoritosComponent implements OnInit {
 
   }
   private obterFavoritos() {
-    const favoritos =this.localStorage.obterDados();
+    const favoritos = this.localStorage.obterDados();
 
-    if (favoritos.length == 0) {
-    
-      return
-    }
-
-   if(favoritos != this.favoritos){
     this.service.obterFavoritos(favoritos).subscribe(filmes => {
       this.filmes = filmes;
       this.favoritos.push(...filmes);
@@ -47,8 +40,6 @@ export class FavoritosComponent implements OnInit {
       this.elenco = elenco;
       this.favoritos.push(...elenco);
     });
-   }
-
 
   }
 }
