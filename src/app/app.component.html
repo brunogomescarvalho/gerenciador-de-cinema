@@ -1,10 +1,26 @@
 <section>
-  <div class="container-fluid">
-    <app-navbar></app-navbar>
-    <router-outlet></router-outlet>
+  <div class="container-fluid p-0">
+    <nav class="navbar" style="background-color: #38698c;">
+      <div class="container-fluid px-4">
+        <a [routerLink]="['/home']" class="navbar-brand fs-3 text-white">Home</a>
+        <h2 class="text-white">AP Movies</h2>
+        <form (ngSubmit)="onSubmit()" class="d-flex" role="search">
+          <input [(ngModel)]="nome" name="nome" class="form-control me-2" type="search" placeholder="Search"
+            aria-label="Search">
+          <button class="btn btn-secondary" type="submit">Pesquisar</button>
+        </form>
+      
+      </div>
+    </nav>
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
     <ng-container *ngTemplateOutlet="rodapeTemplate"></ng-container>
   </div>
+
 </section>
+
+
 
 <!-- Rodapé Template -->
 <ng-template #rodapeTemplate>

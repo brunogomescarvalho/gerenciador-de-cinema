@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Component, EventEmitter, Input, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Parametro } from 'src/app/models/Parametro';
 import { Filme } from 'src/app/models/filme';
@@ -14,19 +14,13 @@ export class FilmesComponent implements OnInit {
 
   filmes!: Filme[]
 
-  categoria!: Parametro
+  @Input({ required: true }) categoria!: Parametro
+
 
   constructor(private service: FilmeHttpService, private router: Router, public route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.route.params.subscribe((params: Params) => {
-      this.categoria = params['categoria']
-      this.obterLista(this.categoria, params['pagina']);
-    })
-  }
-
-  public obterDetalhes(filme: Filme) {
-    this.router.navigate(['detalhes', filme.id])
+    this.obterLista(this.categoria, '1')
   }
 
   private obterLista(categoria: Parametro, pagina: string) {
@@ -41,7 +35,11 @@ export class FilmesComponent implements OnInit {
     observable.subscribe(filmes => this.filmes = filmes)
   }
 
-  public mudarPagina(pg: string) {
-    this.router.navigate([this.categoria, pg], { relativeTo: this.route.parent });
+  public mudarPagina(pg: number) {
+    this.obterLista(this.categoria, String(pg))
+  }
+
+  public obterDetalhes(filme: Filme) {
+    this.router.navigate(['detalhes', filme.id])
   }
 }

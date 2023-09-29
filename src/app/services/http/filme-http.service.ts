@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, combineLatest, forkJoin, map } from 'rxjs';
+import { Observable, combineLatest, forkJoin, map, tap } from 'rxjs';
 import { Filme, IFavorito } from '../../models/filme';
 import { environment } from 'src/environments/environment';
 import { Mapeador } from '../mapeadores/mapeador';
@@ -58,10 +58,11 @@ export class FilmeHttpService {
   }
 
   public obterPorPesquisa(nome: string, page: string): Observable<any> {
-    const url = `https://api.themoviedb.org/3/search/multi?query=${nome}&language=pt-br&page${page}`;
+    const url = `https://api.themoviedb.org/3/search/multi?query=${nome}&language=pt-br&page=${page}`;
 
     return this.httpClient.get(url, this.obterAutorizacao()).pipe(
       map((data: any) => data.results),
+      tap(x=>console.log(x)),
       map((results: any[]) => this.mapeador.mapearPesquisa(results))
     );
   }

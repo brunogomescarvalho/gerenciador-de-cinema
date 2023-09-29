@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Filme, IFavorito } from 'src/app/models/filme';
 import { FilmeHttpService } from 'src/app/services/http/filme-http.service';
@@ -13,6 +13,7 @@ import { Pessoa } from 'src/app/models/pessoa';
 })
 export class DetalhesComponent implements OnInit {
   filme?: Filme
+
   favorito: boolean = false;
   avaliacao: number = 0
   diretor?: Pessoa;
@@ -20,12 +21,12 @@ export class DetalhesComponent implements OnInit {
   trailerUrl?: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl('')
   elenco?: Pessoa[];
 
-  constructor(private router: Router, private route: ActivatedRoute, private serviceHttp: FilmeHttpService, private sanitizer: DomSanitizer, private localStorage: LocalStorageService) {
+  constructor( private router: Router, private route: ActivatedRoute, private serviceHttp: FilmeHttpService, private sanitizer: DomSanitizer, private localStorage: LocalStorageService) {
   }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.params['id']
-    this.obterFilme(id)
+   const id = this.route.snapshot.params['id']
+   this.obterFilme(id)
   }
 
   private obterFilme(id: number) {
@@ -47,7 +48,7 @@ export class DetalhesComponent implements OnInit {
     let filme: IFavorito = {
       id: this.filme!.id,
       nome: this.filme!.nome,
-      tipo:'filme'
+      tipo: 'filme'
     }
 
     this.localStorage.favoritar(filme)

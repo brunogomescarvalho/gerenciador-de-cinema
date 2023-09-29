@@ -3,10 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PaginacaoComponent } from './components/paginacao/paginacao.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { CardComponent } from './components/card/card.component';
 import { HttpClientModule } from '@angular/common/http'
-import { NgbCarouselModule, NgbPaginationModule, NgbRatingModule, NgbScrollSpyModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarouselModule, NgbNavModule, NgbPaginationModule, NgbRatingModule, NgbScrollSpyModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { DetalhesComponent } from './pages/detalhes/detalhes.component';
 import { HomeComponent } from './pages/home/home.component';
 import { FavoritosComponent } from './pages/favoritos/favoritos.component';
@@ -16,7 +15,8 @@ import { FormsModule } from '@angular/forms';
 import { NgOptimizedImage } from '@angular/common';
 import { PessoasComponent } from './pages/pessoas/pessoas.component';
 import { FilmesComponent } from './pages/filmes/filmes.component';
-
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -24,7 +24,6 @@ import { FilmesComponent } from './pages/filmes/filmes.component';
     AppComponent,
     PaginacaoComponent,
     ListaComponent,
-    NavbarComponent,
     CardComponent,
     DetalhesComponent,
     HomeComponent,
@@ -36,6 +35,7 @@ import { FilmesComponent } from './pages/filmes/filmes.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
     NgbPaginationModule,
@@ -43,7 +43,13 @@ import { FilmesComponent } from './pages/filmes/filmes.component';
     NgbCarouselModule,
     NgbScrollSpyModule,
     NgbTooltipModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    NgbNavModule,
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      positionClass: 'toast-top-rigth',
+      preventDuplicates: true,
+    })
   ],
 
   providers: [],

@@ -11,6 +11,7 @@ import { FilmeHttpService } from 'src/app/services/http/filme-http.service';
 })
 export class PesquisaComponent implements OnInit {
   nomePesquisa!: string
+  pagina!:number
   filmes!: Filme[]
   pessoas!: Pessoa[]
   resultado: Filme[] & Pessoa[] = []
@@ -18,11 +19,10 @@ export class PesquisaComponent implements OnInit {
   constructor(private service: FilmeHttpService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.nomePesquisa = this.route.snapshot.params['nome']
+    this.pagina = this.route.snapshot.params['pagina']
+    this.obterLista(this.nomePesquisa, this.pagina.toString());
 
-    this.route.params.subscribe((params: Params) => {
-      this.nomePesquisa = params['nome']
-      this.obterLista(this.nomePesquisa, params['pagina']);
-    })
   }
 
   public obterDetalhes(dado: Filme) {
@@ -37,11 +37,12 @@ export class PesquisaComponent implements OnInit {
     this.service.obterPorPesquisa(nome, pagina).subscribe((data: any) => {
       this.filmes = data[0];
       this.pessoas = data[1];
-      this.resultado = this.filmes.concat(this.pessoas); console.log(data)
+      this.resultado = this.filmes.concat(this.pessoas)
     })
   }
 
-  public mudarPagina(pg: string) {
-    this.router.navigate(['/lista/pesquisa', this.nomePesquisa, pg]);
+  public mudarPagina(pg: number) {
+    this.obterLista(this.nomePesquisa, pg.toString())
+    this.router.navigate(['/pesquisa', this.nomePesquisa, pg]);
   }
 }

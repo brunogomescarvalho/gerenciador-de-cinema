@@ -1,5 +1,3 @@
-import { ModelBase } from "./modelBase"
-
 export class Pessoa {
     id!: number;
     nome!: string;

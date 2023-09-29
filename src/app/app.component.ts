@@ -13,7 +13,7 @@ export class AppComponent {
   constructor(private router: Router) { }
 
   onSubmit() {
-    this.router.navigate(['lista/pesquisa', this.nome, 1])
+    this.router.navigate(['/pesquisa', this.nome, 1])
     this.nome = "";
   }
 }

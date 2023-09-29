@@ -1,7 +1,8 @@
 <div class="container-fluid">
     <div class="row mt-4">
         <div class="col">
-            <app-paginacao [collectionSize]="200" (onEnviarPagina)="mudarPagina($event)"></app-paginacao>
+            <ngb-pagination class="d-flex justify-content-center" (pageChange)="mudarPagina($event)"
+            [collectionSize]="200" [maxSize]="5" [(page)]="pagina" [boundaryLinks]="true"></ngb-pagination>
         </div>
     </div>
     <div class="row">

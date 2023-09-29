@@ -1,12 +1,9 @@
 import { Injectable } from "@angular/core"
-import { forkJoin } from "rxjs"
 import { Filme } from "src/app/models/filme"
 import { Pessoa } from "src/app/models/pessoa"
 @Injectable({
     providedIn: 'root'
 })
-
-
 
 export class Mapeador {
     private imgUrl: string = "https://image.tmdb.org/t/p/original"
