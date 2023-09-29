@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PaginacaoComponent } from './components/paginacao/paginacao.component';
+
 import { CardComponent } from './components/card/card.component';
 import { HttpClientModule } from '@angular/common/http'
 import { NgbCarouselModule, NgbNavModule, NgbPaginationModule, NgbRatingModule, NgbScrollSpyModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
@@ -15,14 +15,14 @@ import { FormsModule } from '@angular/forms';
 import { NgOptimizedImage } from '@angular/common';
 import { PessoasComponent } from './pages/pessoas/pessoas.component';
 import { FilmesComponent } from './pages/filmes/filmes.component';
-import { ToastrModule } from 'ngx-toastr';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    PaginacaoComponent,
+   
     ListaComponent,
     CardComponent,
     DetalhesComponent,
@@ -45,11 +45,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NgbTooltipModule,
     NgOptimizedImage,
     NgbNavModule,
-    ToastrModule.forRoot({
-      timeOut: 5000,
-      positionClass: 'toast-top-rigth',
-      preventDuplicates: true,
-    })
+    
   ],
 
   providers: [],

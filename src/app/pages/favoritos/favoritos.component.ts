@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { Filme } from 'src/app/models/filme';
 import { Pessoa } from 'src/app/models/pessoa';
 import { FilmeHttpService } from 'src/app/services/http/filme-http.service';
@@ -17,7 +16,7 @@ export class FavoritosComponent implements OnInit {
   filmes: Filme[] = [];
   elenco: Pessoa[] = [];
 
-  constructor(private localStorage: LocalStorageService, private toast: ToastrService, private service: FilmeHttpService, private router: Router) { }
+  constructor(private localStorage: LocalStorageService,  private service: FilmeHttpService, private router: Router) { }
 
   ngOnInit(): void {
     this.obterFavoritos();
@@ -34,7 +33,7 @@ export class FavoritosComponent implements OnInit {
     const favoritos =this.localStorage.obterDados();
 
     if (favoritos.length == 0) {
-      this.toast.warning('Nenhum favorito até o momento!', 'Favoritos');
+    
       return
     }
 
