@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CardComponent } from './components/card/card.component';
 import { HttpClientModule } from '@angular/common/http'
-import { NgbCarouselModule, NgbNavModule, NgbPaginationModule, NgbRatingModule, NgbScrollSpyModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarouselModule, NgbDropdownModule, NgbNavModule, NgbPaginationModule, NgbRatingModule, NgbScrollSpyModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { DetalhesComponent } from './pages/detalhes/detalhes.component';
 import { HomeComponent } from './pages/home/home.component';
 import { FavoritosComponent } from './pages/favoritos/favoritos.component';
@@ -44,6 +44,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NgbTooltipModule,
     NgOptimizedImage,
     NgbNavModule,
+    NgbDropdownModule
     
   ],
 

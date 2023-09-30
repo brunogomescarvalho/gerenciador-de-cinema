@@ -1,1 +1,3 @@
-export type Parametro = 'populares' | 'novidades' | 'recomendados';
+import { Genero } from "./filme";
+
+export type Parametro = 'populares' | 'novidades' | 'recomendados'| 'genero';

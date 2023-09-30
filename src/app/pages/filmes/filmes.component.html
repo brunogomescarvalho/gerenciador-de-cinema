@@ -7,7 +7,8 @@
     </div>
     <div class="row">
         <div class="col">
-            <h2 class="fs-3 text-secondary fs-italic text-center">{{ categoria | uppercase}}</h2>
+            <h2 class="fs-3 text-secondary fs-italic text-center">{{ (categoria === 'genero' ? genero?.nome : categoria) | uppercase }}
+</h2>
             <hr>
         </div>
     </div>

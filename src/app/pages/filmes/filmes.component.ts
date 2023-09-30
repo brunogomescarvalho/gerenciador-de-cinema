@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Parametro } from 'src/app/models/Parametro';
-import { Filme } from 'src/app/models/filme';
+import { Filme, Genero } from 'src/app/models/filme';
 import { FilmeHttpService } from 'src/app/services/http/filme-http.service';
 
 @Component({
@@ -14,6 +14,8 @@ export class FilmesComponent implements OnInit {
 
   filmes!: Filme[]
 
+  @Input() genero?: Genero
+
   @Input({ required: true }) categoria!: Parametro
 
 
@@ -21,6 +23,7 @@ export class FilmesComponent implements OnInit {
 
   ngOnInit() {
     this.obterLista(this.categoria, '1')
+    console.log(this.categoria)
   }
 
   private obterLista(categoria: Parametro, pagina: string) {
@@ -30,6 +33,7 @@ export class FilmesComponent implements OnInit {
       case 'populares': observable = this.service.obterFilmesPopulares(pagina); break
       case 'novidades': observable = this.service.obterFilmesLancamentos(pagina); break
       case 'recomendados': observable = this.service.obterFilmesRecomendados(pagina); break
+      case 'genero': observable = this.service.obterPorGenero(this.genero!.id.toString(), pagina)
     }
 
     observable.subscribe(filmes => this.filmes = filmes)

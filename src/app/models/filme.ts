@@ -6,6 +6,12 @@ export interface IFavorito {
     tipo: string
 }
 
+export interface Genero {
+    id: number
+    nome: string
+
+}
+
 export class Filme {
     id!: number;
     nome!: string;
@@ -36,7 +42,7 @@ export class Filme {
         votos?: number,
         generos?: any,
     ) {
-      
+
         this.id = id;
         this.nome = titulo;
         this.poster = poster;

@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, combineLatest, forkJoin, map, tap } from 'rxjs';
-import { Filme, IFavorito } from '../../models/filme';
+import { Observable, forkJoin, map, tap } from 'rxjs';
+import { IFavorito } from '../../models/filme';
 import { environment } from 'src/environments/environment';
 import { Mapeador } from '../mapeadores/mapeador';
-import { Pessoa } from 'src/app/models/pessoa';
 
 @Injectable({
   providedIn: 'root'
@@ -67,6 +66,24 @@ export class FilmeHttpService {
       );
   }
 
+  public obterPorGenero(id: string, page: string): Observable<any> {
+    const url = `https://api.themoviedb.org/3/genre/${id}/movies?language=pt-BR&page=${page}`;
+
+    return this.httpClient.get(url, this.obterAutorizacao())
+      .pipe(
+        map((res: any) => res.results),
+        map((obj: any[]) => this.mapeador.mapearListaFilmes(obj))
+      );
+  }
+
+  public obterGeneros(): Observable<any> {
+    const url = `https://api.themoviedb.org/3/genre/movie/list?language=pt-BR`;
+
+    return this.httpClient.get(url, this.obterAutorizacao())
+      .pipe(
+        map((res:any) => this.mapeador.mapearGeneros(res.genres)),
+      );
+  }
 
   public obterPorId(id: number) {
     const url = this.apiUrl + id +

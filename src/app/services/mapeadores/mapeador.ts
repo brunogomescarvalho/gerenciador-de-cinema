@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core"
-import { Filme } from "src/app/models/filme"
+import { Filme, Genero } from "src/app/models/filme"
 import { Pessoa } from "src/app/models/pessoa"
 @Injectable({
     providedIn: 'root'
@@ -7,7 +7,7 @@ import { Pessoa } from "src/app/models/pessoa"
 
 export class Mapeador {
     private imgUrl: string = "https://image.tmdb.org/t/p/original"
-    public filmeResumido(obj: any) {
+    private filmeResumido(obj: any) {
         return new Filme(
             obj.id,
             obj.title,
@@ -56,7 +56,7 @@ export class Mapeador {
     }
 
     public mapearListaFilmes(lista: any[]): Filme[] {
-        return lista?.map((filme: any) => { return this.filmeResumido(filme) })
+        return lista?.filter(x => x.poster_path != null).map((filme: any) => { return this.filmeResumido(filme) })
     }
 
     public mapearListaPessoas(lista: any[]): Pessoa[] {
@@ -71,6 +71,15 @@ export class Mapeador {
             filmes: this.mapearListaFilmes(filmes),
             pessoas: this.mapearListaPessoas(pessoas)
         };
+    }
+
+    public mapearGeneros(obj: any[]) {
+        return obj.map((x: any) => {
+            return {
+                id: x.id,
+                nome: x.name
+            } as Genero
+        })
     }
 
 
