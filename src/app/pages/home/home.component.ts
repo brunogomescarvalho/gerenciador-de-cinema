@@ -27,14 +27,9 @@ export class HomeComponent {
     this.router.navigate(['detalhes', filme.id])
   }
 
-
-
-  @Output() categoriaSelecionadaChange = new EventEmitter<Genero>();
-
   onCategoriaSelecionada(categoria: Genero) {
     this.activeId = 6
     this.genero = categoria;
-    this.categoriaSelecionadaChange.emit(this.genero);
   }
 
   atualizarIdAtivo(id: number) {
