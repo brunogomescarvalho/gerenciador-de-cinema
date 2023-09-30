@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Parametro } from 'src/app/models/Parametro';
@@ -28,8 +28,6 @@ export class FilmesComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.obterLista(this.categoria, '1')
-    console.log('oninit')
-
   }
 
   private obterLista(categoria: Parametro, pagina: string) {
@@ -39,7 +37,7 @@ export class FilmesComponent implements OnInit, OnChanges {
       case 'populares': observable = this.service.obterFilmesPopulares(pagina); break
       case 'novidades': observable = this.service.obterFilmesLancamentos(pagina); break
       case 'recomendados': observable = this.service.obterFilmesRecomendados(pagina); break
-      case 'genero': observable = this.service.obterPorGenero(this.genero!.id.toString(), pagina)
+      case 'genero': observable = this.service.obterPorGenero(this.genero!.id.toString(), pagina);break
     }
 
     observable.subscribe(filmes => this.filmes = filmes)

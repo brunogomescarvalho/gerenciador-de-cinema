@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { EventEmitter, Injectable } from '@angular/core';
-import { Observable, forkJoin, map, tap } from 'rxjs';
-import { Genero, IFavorito } from '../../models/filme';
+import { Injectable } from '@angular/core';
+import { Observable, forkJoin, map } from 'rxjs';
+import { IFavorito } from '../../models/filme';
 import { environment } from 'src/environments/environment';
 import { Mapeador } from '../mapeadores/mapeador';
 
