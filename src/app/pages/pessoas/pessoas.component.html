@@ -37,7 +37,7 @@
               </p>
               <div *ngIf=!pessoa?.biografia>
                 <div>
-                  <ng-container *ngTemplateOutlet="carouselBackgroud"></ng-container>
+                  <img [ngSrc]=imagensAlternativas[0] width="800" height="600" class="img-fluid rounded" alt="Poster do Filme" />
                 </div>
               </div>
             </div>
@@ -55,13 +55,4 @@
       </div>
     </div>
   </section>
-  
-  <ng-template #carouselBackgroud>
-    <ngb-carousel #carousel [interval]="3000">
-      <ng-template ngbSlide *ngFor="let img of imagensAlternativas; index as i">
-        <img [ngSrc]=img width="800" height="600" class="img-fluid rounded" alt="Poster do Filme" />
-      </ng-template>
-    </ngb-carousel>
-    <hr />
-  </ng-template>
   

@@ -75,8 +75,7 @@ export class Mapeador {
 
     public mapearGeneros(obj: any[]) {
         return obj.map((x: any) => {
-            return new Genero(x.id, x.nome)
-
+            return new Genero(x.id, x.name)
         })
     }
 
