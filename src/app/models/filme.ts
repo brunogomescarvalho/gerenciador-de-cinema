@@ -6,9 +6,14 @@ export interface IFavorito {
     tipo: string
 }
 
-export interface Genero {
+export class Genero {
     id: number
     nome: string
+
+    constructor(id: number, nome: string) {
+        this.id = id;
+        this.nome = nome
+    }
 
 }
 
@@ -24,7 +29,7 @@ export class Filme {
     produtores?: Pessoa[];
     diretores?: Pessoa[];
     votos?: number
-    generos?: any[];
+    generos?: Genero[];
     resumo?: string
 
     constructor(
@@ -40,7 +45,7 @@ export class Filme {
         produtores?: Pessoa[],
         diretores?: Pessoa[],
         votos?: number,
-        generos?: any,
+        generos?: Genero[],
     ) {
 
         this.id = id;

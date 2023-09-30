@@ -1,71 +1,67 @@
 <section>
     <div class="container my-2">
-        <hr />
-        <div class="row justify-content-around">
-            <div class="row">
-                <div *ngIf="pessoa" class="col-lg-5 col-md-6 col-sm-12 mt-4">
-                    <img [ngSrc]="pessoa.poster!" width="400" height="600" class="img-fluid rounded"
-                        alt="Poster da Pessoa" priority />
-                </div>
-                <div class="col-lg-7 col-md-6 col-sm-12 mt-3">
-                    <div class="col text-bg-black">
-                        <p class="fs-3 text-center">{{ pessoa?.nome }}</p>
-                    </div>
-                    <hr class="mt-0" />
-                    <div class="col">
-                        <div class="row m-0">
-                            <div class="col-lg-4 col-sm-12 text-center pt-2 m-0">
-                                <p class="fs-5"> {{ pessoa?.localNascimento }}</p>
-                                <p *ngIf="pessoa?.localNascimento" class="fs-5">Local Nascimento</p>
-                            </div>
-                            <div class="col-md-4 col-sm-12 text-center">
-                                <p class="m-0">
-                                    <i (click)="adicionarFavoritos()" class="coracao fs-2"
-                                        [class]="favorito === true ? 'bi-heart-fill' : 'bi-heart'"></i>
-                                </p>
-                                <p class="fs-5">{{ favorito ? 'Favorito' : 'Adicionar aos Favoritos' }}</p>
-                            </div>
-                            <div class="col-md-4 col-sm-12 text-center">
-                                <p class="m-0 fs-2 text-center fw-light">{{ pessoa?.dataNascimento | date:'dd-MM-yyyy'}}
-                                </p>
-                                <p *ngIf="pessoa?.dataNascimento" class="fs-5">Data Nascimento</p>
-                            </div>
-                        </div>
-                        <hr class="mt-0" />
-                    </div>
-                    <div class="col  px-4 resumo">
-                        <p class="fs-4 text-dark biografia" [ngClass]="{'text-secondary':'pessoa?.biografia == null'}">
-                            {{ pessoa?.biografia}}
-                        </p>
-                        <div *ngIf=!pessoa?.biografia>
-                            <div>
-                                <ng-container *ngTemplateOutlet="carouselBackgroud"></ng-container>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <hr />
-            </div>
-        </div>
-    </div>
-
-    <div class="container-fluid">
-        <hr>
+      <hr />
+      <div class="row justify-content-around">
         <div class="row">
-            <h3 class="text-dark text-center">Obras</h3>
-            <app-lista [dados]="pessoa?.obras"
-                (onCardSelecionado)="obterDetalhesFilmesRelacionados($event)"></app-lista>
+          <div *ngIf="pessoa" class="col-lg-5 col-md-6 col-sm-12 mt-4">
+            <img [ngSrc]="pessoa.poster!" width="400" height="600" class="img-fluid rounded" alt="Poster da Pessoa" priority />
+          </div>
+          <div class="col-lg-7 col-md-6 col-sm-12 mt-3">
+            <div class="col text-bg-black">
+              <p class="fs-3 text-center">{{ pessoa?.nome }}</p>
+            </div>
+            <hr class="mt-0" />
+            <div class="col">
+              <div class="row justify-content-center m-0">
+                <div class="col-lg-4 col-sm-12 text-center pt-2 m-0">
+                  <p class="fs-5"> {{ pessoa?.localNascimento }}</p>
+                  <p *ngIf="pessoa?.localNascimento" class="fs-5">Local Nascimento</p>
+                </div>
+                <div class="col-md-4 col-sm-12 text-center">
+                  <p class="m-0">
+                    <i (click)="adicionarFavoritos()" class="coracao fs-2"
+                      [class]="favorito === true ? 'bi-heart-fill' : 'bi-heart'"></i>
+                  </p>
+                  <p class="fs-5">{{ favorito ? 'Favorito' : 'Adicionar aos Favoritos' }}</p>
+                </div>
+                <div class="col-md-4 col-sm-12 text-center">
+                  <p class="m-0 fs-2 text-center fw-light">{{ pessoa?.dataNascimento | date:'dd-MM-yyyy'}}</p>
+                  <p *ngIf="pessoa?.dataNascimento" class="fs-5">Data Nascimento</p>
+                </div>
+              </div>
+              <hr class="mt-0" />
+            </div>
+            <div class="col  px-4 resumo">
+              <p class="fs-4 text-dark biografia" [ngClass]="{'text-secondary':'pessoa?.biografia == null'}">
+                {{ pessoa?.biografia}}
+              </p>
+              <div *ngIf=!pessoa?.biografia>
+                <div>
+                  <ng-container *ngTemplateOutlet="carouselBackgroud"></ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr />
         </div>
+      </div>
     </div>
-
-</section>
-
-<ng-template #carouselBackgroud>
+  
+    <div class="container-fluid">
+      <hr>
+      <div class="row">
+        <h3 class="text-dark text-center">Obras</h3>
+        <app-lista [dados]="pessoa?.obras" (onCardSelecionado)="obterDetalhesFilmesRelacionados($event)"></app-lista>
+      </div>
+    </div>
+  </section>
+  
+  <ng-template #carouselBackgroud>
     <ngb-carousel #carousel [interval]="3000">
-        <ng-template ngbSlide *ngFor="let img of imagensAlternativas; index as i">
-            <img [ngSrc]=img width="800" height="600" class="img-fluid rounded" alt="Poster do Filme" />
-        </ng-template>
+      <ng-template ngbSlide *ngFor="let img of imagensAlternativas; index as i">
+        <img [ngSrc]=img width="800" height="600" class="img-fluid rounded" alt="Poster do Filme" />
+      </ng-template>
     </ngb-carousel>
     <hr />
-</ng-template>
+  </ng-template>
+  

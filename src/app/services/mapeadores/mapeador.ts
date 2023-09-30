@@ -32,7 +32,7 @@ export class Mapeador {
             obj.credits.crew.filter((x: any) => x.job == 'Producer').map((produtor: any) => new Pessoa(produtor.id, produtor.name, this.imgUrl + produtor.profile_path)).slice(0, 10),
             obj.credits.crew.filter((x: any) => x.job == 'Director').map((diretor: any) => new Pessoa(diretor.id, diretor.name, this.imgUrl + diretor.profile_path)).slice(0, 10),
             obj.vote_count,
-            obj.genres,
+            this.mapearGeneros(obj.genres),
 
         )
     }
@@ -75,10 +75,8 @@ export class Mapeador {
 
     public mapearGeneros(obj: any[]) {
         return obj.map((x: any) => {
-            return {
-                id: x.id,
-                nome: x.name
-            } as Genero
+            return new Genero(x.id, x.nome)
+
         })
     }
 

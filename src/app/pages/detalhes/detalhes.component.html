@@ -30,7 +30,7 @@
           </div>
           <hr class="mt-0" />
           <div class="col">
-            <div class="row m-0">
+            <div class="row m-0 justify-content-center">
               <div class="col-lg-4 col-sm-12 text-center">
                 <ngb-rating class="m-0" [(rate)]="avaliacao" [starTemplate]="t" [readonly]="true"
                   [max]="5"></ngb-rating>
@@ -66,7 +66,7 @@
           <hr />
           <div class="col d-flex justify-content-center gap-2 pb-3">
             <ng-container *ngFor="let genero of filme?.generos">
-              <span class="badge text-bg-dark fs-5 fw-light">{{ genero?.name }}</span>
+              <span class="badge text-bg-dark fs-5 fw-light">{{ genero?.nome }}</span>
             </ng-container>
           </div>
         </div>

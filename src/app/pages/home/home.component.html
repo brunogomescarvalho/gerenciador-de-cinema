@@ -12,8 +12,7 @@
     </ng-template>
   </li>
   <li [ngbNavItem]="3">
-    <button (click)="atualizarIdAtivo(3)" class="text-secondary-emphasis fs-4 fw-semibold"
-      ngbNavLink>Recomendados</button>
+    <button (click)="atualizarIdAtivo(3)" class="text-secondary-emphasis fs-4 fw-semibold" ngbNavLink>Recomendados</button>
     <ng-template ngbNavContent>
       <app-filmes categoria="recomendados"></app-filmes>
     </ng-template>
@@ -25,10 +24,10 @@
     </ng-template>
   </li>
   <li ngbDropdown class="nav-item" role="presentation">
-    <button type="button" class="nav-link text-secondary-emphasis fs-4 fw-semibold" ngbDropdownToggle>Generos</button>
+    <button type="button" class="nav-link text-secondary-emphasis fs-4 fw-semibold" ngbDropdownToggle>Genêros</button>
     <div ngbDropdownMenu>
       <div *ngFor="let item of generos">
-        <button (click)="onCategoriaSelecionada(item)" ngbDropdownItem>{{item.nome}}</button>
+        <button (click)="onCategoriaSelecionada(item)" class='fs-5' ngbDropdownItem>{{item.nome}}</button>
       </div>
     </div>
   </li>
@@ -38,7 +37,5 @@
     </ng-template>
   </li>
 </ul>
-
-
 
 <div [ngbNavOutlet]="nav"></div>

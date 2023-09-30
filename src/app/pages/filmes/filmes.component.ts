@@ -20,8 +20,8 @@ export class FilmesComponent implements OnInit, OnChanges {
 
 
   constructor(private service: FilmeHttpService, private router: Router, public route: ActivatedRoute) { }
+  
   ngOnChanges(changes: SimpleChanges): void {
-
     if (changes['genero'] && !changes['genero'].firstChange)
       this.obterLista(this.categoria, '1')
   }
@@ -37,7 +37,7 @@ export class FilmesComponent implements OnInit, OnChanges {
       case 'populares': observable = this.service.obterFilmesPopulares(pagina); break
       case 'novidades': observable = this.service.obterFilmesLancamentos(pagina); break
       case 'recomendados': observable = this.service.obterFilmesRecomendados(pagina); break
-      case 'genero': observable = this.service.obterPorGenero(this.genero!.id.toString(), pagina);break
+      case 'genero': observable = this.service.obterPorGenero(this.genero!.id.toString(), pagina); break
     }
 
     observable.subscribe(filmes => this.filmes = filmes)
