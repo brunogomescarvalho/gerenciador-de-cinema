@@ -1,25 +1,25 @@
 <ul ngbNav #nav="ngbNav" [activeId]="activeId" class="nav-underline">
   <li [ngbNavItem]="1">
-    <button (click)='carregarPagina(1)' class="text-secondary-emphasis fs-4 fw-semibold" ngbNavLink>Novidades</button>
+    <button (click)="atualizarIdAtivo(1)" class="text-secondary-emphasis fs-4 fw-semibold" ngbNavLink>Novidades</button>
     <ng-template ngbNavContent>
       <app-filmes categoria="novidades"></app-filmes>
     </ng-template>
   </li>
   <li [ngbNavItem]="2">
-    <button (click)='carregarPagina(2)' class="text-secondary-emphasis fs-4 fw-semibold" ngbNavLink>Populares</button>
+    <button (click)="atualizarIdAtivo(2)" class="text-secondary-emphasis fs-4 fw-semibold" ngbNavLink>Populares</button>
     <ng-template ngbNavContent>
       <app-filmes categoria="populares"></app-filmes>
     </ng-template>
   </li>
   <li [ngbNavItem]="3">
-    <button (click)='carregarPagina(3)' class="text-secondary-emphasis fs-4 fw-semibold"
+    <button (click)="atualizarIdAtivo(3)" class="text-secondary-emphasis fs-4 fw-semibold"
       ngbNavLink>Recomendados</button>
     <ng-template ngbNavContent>
       <app-filmes categoria="recomendados"></app-filmes>
     </ng-template>
   </li>
   <li [ngbNavItem]="4">
-    <button (click)='carregarPagina(4)' class="text-secondary-emphasis fs-4 fw-semibold" ngbNavLink>Favoritos</button>
+    <button (click)="atualizarIdAtivo(4)" class="text-secondary-emphasis fs-4 fw-semibold" ngbNavLink>Favoritos</button>
     <ng-template ngbNavContent>
       <app-favoritos></app-favoritos>
     </ng-template>
@@ -28,11 +28,11 @@
     <button type="button" class="nav-link text-secondary-emphasis fs-4 fw-semibold" ngbDropdownToggle>Generos</button>
     <div ngbDropdownMenu>
       <div *ngFor="let item of generos">
-        <button (click)="carregarPaginaGeneros(item)" ngbDropdownItem>{{item.nome}}</button>
+        <button (click)="onCategoriaSelecionada(item)" ngbDropdownItem>{{item.nome}}</button>
       </div>
     </div>
   </li>
-  <li [ngbNavItem]="5">
+  <li [ngbNavItem]="6">
     <ng-template ngbNavContent>
       <app-filmes categoria='genero' [genero]="genero"></app-filmes>
     </ng-template>

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Parametro } from 'src/app/models/Parametro';
@@ -10,7 +10,7 @@ import { FilmeHttpService } from 'src/app/services/http/filme-http.service';
   templateUrl: './filmes.component.html',
   styleUrls: ['./filmes.component.css']
 })
-export class FilmesComponent implements OnInit {
+export class FilmesComponent implements OnInit, OnChanges {
 
   filmes!: Filme[]
 
@@ -20,10 +20,16 @@ export class FilmesComponent implements OnInit {
 
 
   constructor(private service: FilmeHttpService, private router: Router, public route: ActivatedRoute) { }
+  ngOnChanges(changes: SimpleChanges): void {
+
+    if (changes['genero'] && !changes['genero'].firstChange)
+      this.obterLista(this.categoria, '1')
+  }
 
   ngOnInit() {
     this.obterLista(this.categoria, '1')
-    console.log(this.categoria)
+    console.log('oninit')
+
   }
 
   private obterLista(categoria: Parametro, pagina: string) {
@@ -46,4 +52,5 @@ export class FilmesComponent implements OnInit {
   public obterDetalhes(filme: Filme) {
     this.router.navigate(['detalhes', filme.id])
   }
+
 }

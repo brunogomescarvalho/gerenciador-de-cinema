@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Filme, Genero } from 'src/app/models/filme';
@@ -13,7 +13,7 @@ import { FilmeHttpService } from 'src/app/services/http/filme-http.service';
 export class HomeComponent {
 
   nomeParaPesquisar?: string
-  activeId: number = 2
+  activeId: number = 1
   generos!: Genero[]
   genero!: Genero
 
@@ -27,16 +27,20 @@ export class HomeComponent {
     this.router.navigate(['detalhes', filme.id])
   }
 
-  carregarPaginaGeneros(genero: Genero) {
-    this.genero = genero
-    this.activeId =5
-    
+
+
+  @Output() categoriaSelecionadaChange = new EventEmitter<Genero>();
+
+  onCategoriaSelecionada(categoria: Genero) {
+    this.activeId = 6
+    this.genero = categoria;
+    this.categoriaSelecionadaChange.emit(this.genero);
   }
 
-  carregarPagina(nr:number){
-    this.activeId = nr
+  atualizarIdAtivo(id: number) {
+    this.activeId = id
   }
-  
+
 }
 
 

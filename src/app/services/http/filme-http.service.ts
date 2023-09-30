@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Observable, forkJoin, map, tap } from 'rxjs';
-import { IFavorito } from '../../models/filme';
+import { Genero, IFavorito } from '../../models/filme';
 import { environment } from 'src/environments/environment';
 import { Mapeador } from '../mapeadores/mapeador';
 
@@ -81,7 +81,7 @@ export class FilmeHttpService {
 
     return this.httpClient.get(url, this.obterAutorizacao())
       .pipe(
-        map((res:any) => this.mapeador.mapearGeneros(res.genres)),
+        map((res: any) => this.mapeador.mapearGeneros(res.genres)),
       );
   }
 
@@ -108,6 +108,7 @@ export class FilmeHttpService {
         map((pessoa: any) => this.mapeador.mapearPessoa(pessoa)),
       )
   }
+
 }
 
 
