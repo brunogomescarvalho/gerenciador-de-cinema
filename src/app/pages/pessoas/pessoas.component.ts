@@ -31,13 +31,14 @@ export class PessoasComponent implements OnInit {
   public adicionarFavoritos() {
     this.favorito = !this.favorito;
 
-    let filme: IFavorito = {
+    let pessoa: IFavorito = {
       id: this.pessoa!.id,
       nome: this.pessoa!.nome,
+      poster:this.pessoa!.poster,
       tipo: 'elenco'
     }
 
-    this.localStorage.favoritar(filme)
+    this.localStorage.alterarStatusFavorito(pessoa)
   }
 
   obterDetalhesFilmesRelacionados(filme: Filme) {

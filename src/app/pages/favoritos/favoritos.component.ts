@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Filme, IFavorito } from 'src/app/models/filme';
+import { Filme } from 'src/app/models/filme';
 import { Pessoa } from 'src/app/models/pessoa';
 import { FilmeHttpService } from 'src/app/services/http/filme-http.service';
 import { LocalStorageService } from 'src/app/services/localStorage/local-storage.service';
@@ -31,18 +31,16 @@ export class FavoritosComponent implements OnInit {
 
     if (favoritos.length == 0) return
 
-    this.service.obterFavoritos(favoritos).subscribe(filmes => {
-      this.filmes = filmes;
-      this.favoritos.push(...filmes);
-    });
+    const filmes = favoritos.filter((x: any) => x.tipo == 'filme').map(((f: any) => new Filme(f.id, f.nome, f.poster)))
+    this.filmes = filmes;
+    this.favoritos.push(...filmes);
 
-    this.service.obterElencoFavoritos(favoritos).subscribe(elenco => {
-      this.elenco = elenco;
-      this.favoritos.push(...elenco);
-    });
-
-  }
+    const elenco = favoritos.filter((x: any) => x.tipo == 'elenco').map(((e: any) => new Pessoa(e.id, e.nome, e.poster)))
+    this.elenco = elenco;
+    this.favoritos.push(...elenco);
+  };
 }
+
 
 
 

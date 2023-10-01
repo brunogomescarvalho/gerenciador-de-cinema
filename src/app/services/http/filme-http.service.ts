@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, forkJoin, map } from 'rxjs';
-import { IFavorito } from '../../models/filme';
+import { Observable, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Mapeador } from '../mapeadores/mapeador';
 
@@ -45,15 +44,6 @@ export class FilmeHttpService {
   public obterFilmesLancamentos(page: string) {
     const url = this.obterUrl('now_playing', page);
     return this.obterListagem(url)
-  }
-
-  public obterFavoritos(favoritos: IFavorito[]) {
-    const filmes = favoritos.filter(x => x.tipo == 'filme').map((f) => this.obterPorId(f.id))
-    return forkJoin(filmes)
-  }
-  public obterElencoFavoritos(favoritos: IFavorito[]) {
-    const elenco = favoritos.filter(x => x.tipo == 'elenco').map((f) => this.obterPessoaPorId(f.id))
-    return forkJoin(elenco)
   }
 
   public obterPorPesquisa(nome: string, page: string): Observable<any> {

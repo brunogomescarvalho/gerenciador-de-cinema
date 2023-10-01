@@ -21,7 +21,7 @@ export class LocalStorageService {
     localStorage.setItem(this.local, JSON.stringify(dados))
   }
 
-  favoritar(filme: IFavorito) {
+  alterarStatusFavorito(filme: IFavorito) {
     const dados = this.obterDados() as IFavorito[];
 
     const index = dados.findIndex(o => filme.id == o.id);

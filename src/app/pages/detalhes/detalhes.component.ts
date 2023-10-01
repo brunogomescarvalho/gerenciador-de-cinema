@@ -13,7 +13,6 @@ import { Pessoa } from 'src/app/models/pessoa';
 })
 export class DetalhesComponent implements OnInit {
   filme?: Filme
-
   favorito: boolean = false;
   avaliacao: number = 0
   diretor?: Pessoa;
@@ -28,7 +27,7 @@ export class DetalhesComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.params['id']
     this.obterFilme(id)
-   
+
   }
 
   private obterFilme(id: number) {
@@ -43,7 +42,6 @@ export class DetalhesComponent implements OnInit {
         this.imagemAlternativa = this.filme?.backdrop!
         if (!this.filme.trailer?.endsWith('undefined'))
           this.trailerUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.filme.trailer!)
-          console.log(this.filme)
       })
   }
 
@@ -53,10 +51,11 @@ export class DetalhesComponent implements OnInit {
     let filme: IFavorito = {
       id: this.filme!.id,
       nome: this.filme!.nome,
+      poster: this.filme!.poster,
       tipo: 'filme'
     }
 
-    this.localStorage.favoritar(filme)
+    this.localStorage.alterarStatusFavorito(filme)
   }
 
   public irParaDetalhes(ator: Pessoa) {

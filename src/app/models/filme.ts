@@ -3,6 +3,7 @@ import { Pessoa } from "./pessoa";
 export interface IFavorito {
     id: number
     nome: string
+    poster: string
     tipo: string
 }
 
@@ -36,8 +37,8 @@ export class Filme {
         id: number,
         titulo: string,
         poster: string,
-        resumo: string,
-        backdrop: string,
+        resumo?: string,
+        backdrop?: string,
         trailer?: string,
         data?: string,
         avaliacao?: number,

@@ -20,7 +20,7 @@ export class HomeComponent {
   constructor(private router: Router, private service: FilmeHttpService) { }
 
   ngOnInit(): void {
-    this.service.obterGeneros().subscribe(res => { this.generos = res; console.log(this.generos) })
+    this.service.obterGeneros().subscribe(res => { this.generos = res })
   }
 
   mostrarDetalhes(filme: Filme) {
