@@ -46,14 +46,33 @@ export class Mapeador {
             obj.credits?.cast
                 .filter((poster: any) => poster.poster_path != null)
                 .map((filme: any) =>
-                    new Filme(filme.id, filme.title, this.imgUrl + filme.poster_path, filme.overview, this.imgUrl + filme.backdrop_path)
+                    new Filme(
+                        filme.id,
+                        filme.title,
+                        this.imgUrl + filme.poster_path,
+                        filme.overview,
+                        this.imgUrl + filme.backdrop_path
+                    )
+                )
+                .concat(
+                    obj.credits.crew
+                        .filter((poster: any) => poster.poster_path != null)
+                        .map((filme: any) =>
+                            new Filme(
+                                filme.id,
+                                filme.title,
+                                this.imgUrl + filme.poster_path,
+                                filme.overview,
+                                this.imgUrl + filme.backdrop_path
+                            )
+                        )
                 ),
             obj.biography,
             obj.birthday,
-            obj.images?.profiles.map((img: any) => img.file_path = this.imgUrl + img.file_path
-            )
+            obj.images?.profiles.map((img: any) => img.file_path = this.imgUrl + img.file_path)
         );
     }
+    
 
     public mapearListaFilmes(lista: any[]): Filme[] {
         return lista?.filter(x => x.poster_path != null).map((filme: any) => { return this.filmeResumido(filme) })

@@ -2,12 +2,10 @@
   <div class="container my-2">
     <hr />
     <div class="row justify-content-around">
-      <div class="row">
-        <div class="col d-flex justify-content-around align-items-center">
-          <div class="p-1 text-center" *ngFor="let ator of filme?.elenco | slice:0:5">
+      <div class="row justify-content-center">
+          <div class="px-1 text-center col-sm-6 col-lg-2 d-flex align-items-center justify-content-center " *ngFor="let ator of filme?.elenco | slice:0:5">
             <a [routerLink]="['/elenco',ator.id]" class="fs-4 fw-normal text-secondary">{{ ator?.nome }}</a>
           </div>
-        </div>
       </div>
       <div class="row">
         <div *ngIf="filme" class="col-lg-5 col-md-6 col-sm-12 mt-4">
@@ -15,7 +13,7 @@
             priority />
           <div class="row justify-content-start">
             <div class="text-center col-lg-4 col-md-6 col-sm-12 mt-4">
-              <span class="text-secondary fs-5">Produzido por: </span>
+              <span class="text-secondary fs-5">Produzido por: </span>      
               <a [routerLink]="['/elenco',produtor?.id]" class="text-secondary fs-5">{{ produtor?.nome }}</a>
             </div>
             <div class="text-center col-lg-4 col-md-6 col-sm-12 mt-4">

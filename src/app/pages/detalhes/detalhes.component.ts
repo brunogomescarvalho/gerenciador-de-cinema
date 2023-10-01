@@ -28,6 +28,7 @@ export class DetalhesComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.params['id']
     this.obterFilme(id)
+   
   }
 
   private obterFilme(id: number) {
@@ -42,6 +43,7 @@ export class DetalhesComponent implements OnInit {
         this.imagemAlternativa = this.filme?.backdrop!
         if (!this.filme.trailer?.endsWith('undefined'))
           this.trailerUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.filme.trailer!)
+          console.log(this.filme)
       })
   }
 

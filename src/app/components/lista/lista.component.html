@@ -1,7 +1,7 @@
 <section>
   <div class="container-fluid mt-3">
-    <div class="row gap-3 justify-content-center">
-      <div class="col-lg-2 col-md-4 col-sm-6" *ngFor="let dado of dados">
+    <div class="row gap-1 justify-content-center">
+      <div class="col-lg-2 col-md-4 col-sm-12 justify-content-center" *ngFor="let dado of dados">
         <app-card (onCardSelecionado)="solicitarDetalhes($event)" [model]="dado"></app-card>
       </div>
     </div>
