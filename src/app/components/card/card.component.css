@@ -1,7 +1,7 @@
 .imagem:hover {
   cursor: pointer;
   border: 3px #0d6efd solid;
- 
+
 }
 
 .card {
@@ -14,3 +14,9 @@
   font-size: large !important;
 }
 
+@media (max-width: 768px) {
+  .small-screen-img {
+    width: 200px;
+    max-height: none;
+  }
+}
