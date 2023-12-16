@@ -10,42 +10,11 @@ import { FilmeHttpService } from 'src/app/services/http/filme-http.service';
   templateUrl: './filmes.component.html',
   styleUrls: ['./filmes.component.css']
 })
-export class FilmesComponent implements OnInit, OnChanges {
+export class FilmesComponent {
 
-  filmes!: Filme[]
+  @Input({ required: true }) filmes!: Observable<Filme[]>
 
-  @Input() genero?: Genero
-
-  @Input({ required: true }) categoria!: Parametro
-
-
-  constructor(private service: FilmeHttpService, private router: Router, public route: ActivatedRoute) { }
-  
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['genero'] && !changes['genero'].firstChange)
-      this.obterLista(this.categoria, '1')
-  }
-
-  ngOnInit() {
-    this.obterLista(this.categoria, '1')
-  }
-
-  private obterLista(categoria: Parametro, pagina: string) {
-    let observable = new Observable<Filme[]>()
-
-    switch (categoria) {
-      case 'populares': observable = this.service.obterFilmesPopulares(pagina); break
-      case 'novidades': observable = this.service.obterFilmesLancamentos(pagina); break
-      case 'recomendados': observable = this.service.obterFilmesRecomendados(pagina); break
-      case 'genero': observable = this.service.obterPorGenero(this.genero!.id.toString(), pagina); break
-    }
-
-    observable.subscribe(filmes => this.filmes = filmes)
-  }
-
-  public mudarPagina(pg: number) {
-    this.obterLista(this.categoria, String(pg))
-  }
+  constructor(private router: Router, public route: ActivatedRoute) { }
 
   public obterDetalhes(filme: Filme) {
     this.router.navigate(['detalhes', filme.id])

@@ -16,12 +16,21 @@ import { PessoasComponent } from './pages/pessoas/pessoas.component';
 import { FilmesComponent } from './pages/filmes/filmes.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ShellComponent } from './shell/shell.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatSelectModule} from '@angular/material/select';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
-   
+
     ListaComponent,
     CardComponent,
     DetalhesComponent,
@@ -30,6 +39,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PesquisaComponent,
     PessoasComponent,
     FilmesComponent,
+    ShellComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -44,11 +55,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NgbTooltipModule,
     NgOptimizedImage,
     NgbNavModule,
-    NgbDropdownModule
-    
+    NgbDropdownModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatTabsModule,
+    MatSelectModule
+
   ],
 
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { } 
+export class AppModule { }

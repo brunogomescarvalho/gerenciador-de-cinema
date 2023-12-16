@@ -7,7 +7,7 @@ i {
 }
 
 .filled {
-    color: rgb(51, 54, 63);
+    color: #c2185b ;
     overflow: hidden;
     position: absolute;
     top: 0;
@@ -19,7 +19,7 @@ i {
 }
 
 .coracao {
-    color: black !important
+    color:#c2185b !important
 }
 
 .coracao:hover {

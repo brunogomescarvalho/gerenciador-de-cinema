@@ -6,14 +6,14 @@ import { Pessoa } from "src/app/models/pessoa"
 })
 
 export class Mapeador {
-    private imgUrl: string = "https://image.tmdb.org/t/p/original"
+    private imgUrl: string = "https://image.tmdb.org/t/p/w400"
     private filmeResumido(obj: any) {
         return new Filme(
             obj.id,
             obj.title,
-            this.imgUrl + obj.poster_path,
+            "https://image.tmdb.org/t/p/w400" + obj.poster_path,
             obj.overview,
-            this.imgUrl + obj.backdrop_path
+            "https://image.tmdb.org/t/p/w400" + obj.backdrop_path
         )
 
     }

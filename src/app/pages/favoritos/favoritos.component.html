@@ -1,19 +1,8 @@
 <div class="container-fluid">
-
-    <div class="row mt-5">
-        <div class="col">
-            <h2 class="fs-3 text-secondary fs-italic text-center">Favoritos</h2>
-            <hr>
-        </div>
-    </div>
     <div class="row d-flex flex-column">
-       <div class="col">
-        <app-lista [dados]="favoritos" (onCardSelecionado)="obterDetalhes($event)"></app-lista>
+       <div class="col  card-vazio">
+        <app-lista [dados]="favoritos!" (onCardSelecionado)="obterDetalhes($event)"></app-lista>
        </div>
     </div>
-    <div *ngIf="favoritos.length == 0" class="row card-vazio">
-<div class="col">
-
-</div>
-    </div>
+    <div *ngIf="favoritos?.length == 0">
 </div>

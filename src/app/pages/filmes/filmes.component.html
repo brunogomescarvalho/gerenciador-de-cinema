@@ -1,20 +1,5 @@
 <div class="container-fluid">
-    <div class="row justify-content-center mt-4">
-         <div class="col-10">
-            <ngb-pagination class="d-flex justify-content-center" (pageChange)="mudarPagina($event)"
-            [collectionSize]="200" [maxSize]="5"></ngb-pagination>
-         </div>
-        
-    </div>
-    <div class="row">
-        <div class="col">
-            <h2 class="fs-3 text-secondary fs-italic text-center">{{ (categoria === 'genero' ? genero?.nome : categoria)
-                | uppercase }}
-            </h2>
-            <hr>
-        </div>
-    </div>
-    <div class="row">
-        <app-lista [dados]="filmes" (onCardSelecionado)="obterDetalhes($event)"></app-lista>
-    </div>
+  <div class="row card-vazio">
+    <app-lista [dados]="(filmes|async)!" (onCardSelecionado)="obterDetalhes($event)"></app-lista>
+  </div>
 </div>

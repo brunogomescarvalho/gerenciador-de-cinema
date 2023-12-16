@@ -1,17 +1,17 @@
 <section class="justify-items-center">
     <div class="card  align-items-center">
-        <img  
+        <img
         [ngbTooltip]="model.nome"
         [openDelay]="1000"
-            (click)="enviarSelecionado(model)" 
-            [ngSrc]="model.poster!" 
-            width="150" 
-            height="225" 
+            (click)="enviarSelecionado(model)"
+            [ngSrc]="model.poster!"
+            width="200"
+            height="320"
             class="card-img-top imagem img rounded small-screen-img">
         <div class="card-body p-0">
             <p class="text-center">
-                <a (click)="enviarSelecionado(model)" 
-                    class="fw-normal fs-5 text-dark link-underline link-underline-opacity-0 link">
+                <a (click)="enviarSelecionado(model)"
+                    class="fw-normal fs-6  link" mat-button>
                     {{model.nome!}}
                 </a>
             </p>

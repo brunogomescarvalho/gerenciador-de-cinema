@@ -1,0 +1,22 @@
+@import url('../node_modules/bootstrap-icons/font/bootstrap-icons.css');
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English&display=swap');
+
+*{
+    font-family: 'IM Fell English', serif;
+    font-size: 16px;
+}
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+ul.pagination{
+
+  --bs-pagination-active-bg: #{#c2185b};
+  --bs-pagination-active-border-color:#{#c2185b};
+  --bs-pagination-color:#{#c2185b};
+  --bs-pagination-hover-color:#{#4b4646};
+  --bs-pagination-focus-box-shadow:#{#4b4646};
+
+
+}

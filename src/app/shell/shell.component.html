@@ -1,0 +1,22 @@
+<mat-sidenav-container class="sidenav-container">
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <mat-toolbar-row *ngIf="isHandset$|async">
+        <span class="example-spacer"></span>
+        <a mat-button href="/home">Gerenciador de Filmes</a>
+      </mat-toolbar-row>
+      <mat-toolbar-row>
+
+        <button *ngIf="!(isHandset$|async)" mat-button routerLink="/home">Gerenciador de Filmes</button>
+        <span class="spacer"></span>
+        <form (ngSubmit)="onSubmit()" class="d-flex" role="search">
+          <input [(ngModel)]="nome" name="nome" class="form-control me-2" type="search" placeholder="Search"
+            aria-label="Search">
+          <button class="btn btn-secondary" type="submit">Pesquisar</button>
+        </form>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

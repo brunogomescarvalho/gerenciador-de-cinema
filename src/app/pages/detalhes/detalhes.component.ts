@@ -25,6 +25,7 @@ export class DetalhesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    window.scrollTo(0,0)
     const id = this.route.snapshot.params['id']
     this.obterFilme(id)
 

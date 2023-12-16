@@ -1,5 +1,9 @@
 .coracao:hover{
 cursor: pointer;
+color: gray;
+}
+.coracao{
+  color:  #c2185b;
 }
 
 .biografia {

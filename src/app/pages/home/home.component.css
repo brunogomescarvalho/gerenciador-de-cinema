@@ -11,7 +11,7 @@
 
 .poster-card:hover {
     cursor: pointer;
-    border: 2px solid rgb(64, 64, 207);
+    border: 2px solid rgb(207, 64, 138);
 }
 
 .card-pequeno{
@@ -30,3 +30,6 @@
 }
 
 
+.card-vazio{
+  min-height: 100vh;
+}

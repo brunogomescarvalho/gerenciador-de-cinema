@@ -1,51 +1,5 @@
 <section>
-  <div class="container-fluid p-0 m-0">
-    <nav class="navbar" style="background-color: #38698c;">
-      <div class="container-fluid px-4">
-        <a [routerLink]="['/home']" class="navbar-brand fs-3 text-white">Home</a>
-        <h2 class="text-white">AP Movies</h2>
-        <form (ngSubmit)="onSubmit()" class="d-flex" role="search">
-          <input [(ngModel)]="nome" name="nome" class="form-control me-2" type="search" placeholder="Search"
-            aria-label="Search">
-          <button class="btn btn-secondary" type="submit">Pesquisar</button>
-        </form>
-      
-      </div>
-    </nav>
-    <div class="container">
-      <router-outlet></router-outlet>
-    </div>
-    <ng-container *ngTemplateOutlet="rodapeTemplate"></ng-container>
-  </div>
-
+ <app-shell><router-outlet></router-outlet></app-shell>
 </section>
 
 
-
-<!-- Rodapé Template -->
-<ng-template #rodapeTemplate>
-  <footer class="bg-dark text-white mt-3 pt-2">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <p class="lead">
-            Copyright &copy; 2023 AP_Movies
-          </p>
-        </div>
-        <div class="col-md-6">
-          <ul class="list-inline">
-            <li class="list-inline-item">
-              <i class="text-white bi bi-facebook"></i>
-            </li>
-            <li class="list-inline-item">
-              <i class="text-white bi bi-instagram"></i>
-            </li>
-            <li class="list-inline-item">
-              <i class="text-white bi bi-whatsapp"></i>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </footer>
-</ng-template>
