@@ -1,9 +1,7 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, Input } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Parametro } from 'src/app/models/Parametro';
-import { Filme, Genero } from 'src/app/models/filme';
-import { FilmeHttpService } from 'src/app/services/http/filme-http.service';
+import { Filme } from 'src/app/models/filme';
 
 @Component({
   selector: 'app-filmes',

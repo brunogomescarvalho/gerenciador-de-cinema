@@ -1,59 +1,64 @@
-<div class="row justify-content-center mt-4">
-  <div class="col-10">
-    <ngb-pagination class="d-flex justify-content-center" [page]="pagina" (pageChange)="mudarPagina($event)"
-      [collectionSize]="200" [maxSize]="5"></ngb-pagination>
+<div class="container-fluid">
+  <div class="row justify-content-center mt-4">
+    <div class="col-10">
+      <ngb-pagination
+        class="d-flex justify-content-center"
+        [page]="pagina"
+        (pageChange)="mudarPagina($event)"
+        [collectionSize]="200"
+        [maxSize]="5"
+      ></ngb-pagination>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h2 class="fs-3 text-secondary fs-italic text-center">
+        {{ (categoria === "Genero" ? genero?.nome : categoria) | uppercase }}
+      </h2>
+      <hr />
+    </div>
   </div>
 
-</div>
-<div class="row">
-  <div class="col">
-    <h2 class="fs-3 text-secondary fs-italic text-center">{{ (categoria === 'Genero' ? genero?.nome : categoria)
-      | uppercase }}
-    </h2>
-    <hr>
-  </div>
-</div>
+  <mat-tab-group (focusChange)="obterLista($event.tab.textLabel, '1')">
+    <mat-tab label="Novidades">
+      <ng-template matTabContent>
+        <app-filmes [filmes]="filmesNovidades!"></app-filmes>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Populares">
+      <ng-template matTabContent>
+        <app-filmes [filmes]="filmesPopulares!"></app-filmes>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Recomendados">
+      <ng-template matTabContent>
+        <app-filmes [filmes]="filmesRecomendados!"></app-filmes>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Favoritos">
+      <ng-template matTabContent>
+        <app-favoritos [favoritos]="filmesFavoritos!"></app-favoritos>
+      </ng-template>
+    </mat-tab>
 
-<mat-tab-group (focusChange)="obterLista($event.tab.textLabel,'1')">
-  <mat-tab label="Novidades">
-    <ng-template matTabContent>
-      <app-filmes [filmes]="filmesNovidades!"></app-filmes>
-    </ng-template>
-  </mat-tab>
-  <mat-tab label="Populares">
-    <ng-template matTabContent>
-      <app-filmes [filmes]="filmesPopulares!"></app-filmes>
-    </ng-template>
-  </mat-tab>
-  <mat-tab label="Recomendados">
-    <ng-template matTabContent>
-      <app-filmes [filmes]="filmesRecomendados!"></app-filmes>
-    </ng-template>
-  </mat-tab>
-  <mat-tab label="Favoritos">
-    <ng-template matTabContent>
-      <app-favoritos [favoritos]="filmesFavoritos!"></app-favoritos>
-    </ng-template>
-  </mat-tab>
-
-  <mat-tab label="Gêneros">
-    <ng-template matTabContent>
-      <div class=" mt-3 row d-flex justify-content-center card-vazio">
-        <div class="col-lg-3 text-center">
-          <mat-form-field>
+    <mat-tab label="Gêneros">
+      <ng-template matTabContent>
+        <div class="row mt-3 d-flex justify-content-center m-0">
+          <mat-form-field class="col-lg-3 text-center">
             <mat-label></mat-label>
-            <mat-select [(ngModel)]='genero' (ngModelChange)="buscarPorGenero(genero!)">
+            <mat-select
+              [(ngModel)]="genero"
+              (ngModelChange)="buscarPorGenero(genero!)"
+            >
               <mat-option *ngFor="let g of generos" [value]="g">
-                {{g.nome}}
+                {{ g.nome }}
               </mat-option>
             </mat-select>
           </mat-form-field>
-        </div>
-        <div class="col-lg-6 col-sm-12 text-center">
-          <h3> {{genero?.nome}}</h3>
+          <h3 class="col-lg-6 col-sm-12 text-center">{{ genero?.nome }}</h3>
         </div>
         <app-filmes [filmes]="filmesPorGenero!"></app-filmes>
-      </div>
-    </ng-template>
-  </mat-tab>
-</mat-tab-group>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+</div>
