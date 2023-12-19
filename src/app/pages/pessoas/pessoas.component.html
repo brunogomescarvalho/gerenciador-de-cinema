@@ -1,9 +1,9 @@
 <section>
   <div class="container my-2">
     <hr />
-    <div class="row justify-content-around">
+    <div class="row justify-content-start">
       <div class="row">
-        <div *ngIf="pessoa" class="col-lg-5 col-md-6 col-sm-12 mt-4">
+        <div *ngIf="pessoa" class=" text-center col-lg-5 col-md-6 col-sm-12 mt-4">
           <img [ngSrc]="pessoa.poster!" width="300" height="500" class="img-fluid rounded" alt="Poster da Pessoa"
             priority />
         </div>
@@ -28,17 +28,23 @@
               <div class="col-md-4 col-sm-12 text-center">
                 <p class="m-0 fs-2 text-center fw-light">{{ pessoa?.dataNascimento | date:'dd-MM-yyyy'}}</p>
                 <p *ngIf="pessoa?.dataNascimento" class="fs-5">Data Nascimento</p>
+                <div *ngIf="pessoa?.dataFalecimento">
+                  <p class="m-0 fs-2 text-center fw-light">{{ pessoa?.dataFalecimento | date:'dd-MM-yyyy'}}</p>
+                  <p class="fs-5">Data Falecimento</p>
+                </div>
               </div>
+
+
             </div>
             <hr class="mt-0" />
           </div>
           <div class="col  px-4 resumo">
-            <p class="fs-4 biografia" [ngClass]="{'text-secondary':'pessoa?.biografia == null'}">
+            <p class="fs-4 lh-1 biografia text-secondary">
               {{ pessoa?.biografia}}
             </p>
             <div *ngIf=!pessoa?.biografia>
               <div>
-                <p>Biografia não disponível</p>
+                <p class="text-secondary">Biografia não disponível</p>
                 <img [ngSrc]=imagensAlternativas[0] width="400" height="400" class="img-fluid rounded"
                   alt="Poster do Filme" />
               </div>
