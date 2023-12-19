@@ -1,2 +1,2 @@
 
-export type Parametro = 'Populares' | 'Novidades' | 'Recomendados'| 'Genero';
+export type Parametro = 'Novidades' | 'Populares' | 'Recomendados' | 'Gêneros' | 'Favoritos';

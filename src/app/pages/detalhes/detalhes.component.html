@@ -1,17 +1,17 @@
 <section>
   <div class="container my-2">
     <hr />
-    <div class="row justify-content-around">
+    <div class="row justify-content-start">
       <div class="row justify-content-center">
           <div class="px-1 text-center col-sm-6 col-lg-2 d-flex align-items-center justify-content-center " *ngFor="let ator of filme?.elenco | slice:0:5">
             <a [routerLink]="['/elenco',ator.id]" class="fs-5 fw-normal text-secondary">{{ ator?.nome }}</a>
           </div>
       </div>
       <div class="row mt-3">
-        <div *ngIf="filme" class="col-lg-5 col-md-6 col-sm-12 mt-4">
+        <div *ngIf="filme" class="col-lg-5 col-md-6 col-sm-12 mt-4 text-center">
           <img [ngSrc]="filme.poster!" width="300" height="450" class="img-fluid rounded" alt="Poster do Filme"
             priority />
-          <div class="row justify-content-start">
+          <div class="row justify-content-center">
             <div class="text-center col-lg-4 col-md-6 col-sm-12 mt-4">
               <span class="text-secondary fs-6">Produzido por: </span>
               <a [routerLink]="['/elenco',produtor?.id]" class="text-secondary fs-5">{{ produtor?.nome }}</a>

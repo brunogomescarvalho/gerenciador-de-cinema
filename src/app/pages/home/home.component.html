@@ -12,14 +12,14 @@
   </div>
   <div class="row">
     <div class="col">
-      <h2 class="fs-3 text-secondary fs-italic text-center">
-        {{ (categoria === "Genero" ? genero?.nome : categoria) | uppercase }}
-      </h2>
+      <p class="fs-3 mt-3 text-secondary text-center">
+        {{ (categoria === "Gêneros" ? genero?.nome : categoria) | uppercase }}
+      </p>
       <hr />
     </div>
   </div>
 
-  <mat-tab-group (focusChange)="obterLista($event.tab.textLabel, '1')">
+  <mat-tab-group #tabs (focusChange)="obterLista($event.tab.textLabel, '1')">
     <mat-tab label="Novidades">
       <ng-template matTabContent>
         <app-filmes [filmes]="filmesNovidades!"></app-filmes>
@@ -33,11 +33,6 @@
     <mat-tab label="Recomendados">
       <ng-template matTabContent>
         <app-filmes [filmes]="filmesRecomendados!"></app-filmes>
-      </ng-template>
-    </mat-tab>
-    <mat-tab label="Favoritos">
-      <ng-template matTabContent>
-        <app-favoritos [favoritos]="filmesFavoritos!"></app-favoritos>
       </ng-template>
     </mat-tab>
 
@@ -58,6 +53,12 @@
           <h3 class="col-lg-6 col-sm-12 text-center">{{ genero?.nome }}</h3>
         </div>
         <app-filmes [filmes]="filmesPorGenero!"></app-filmes>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab label="Favoritos">
+      <ng-template matTabContent>
+        <app-favoritos [favoritos]="filmesFavoritos!"></app-favoritos>
       </ng-template>
     </mat-tab>
   </mat-tab-group>

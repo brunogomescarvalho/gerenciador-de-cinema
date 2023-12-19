@@ -1,11 +1,13 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, SimpleChanges, ViewChild } from '@angular/core';
+import { MatTabGroup } from '@angular/material/tabs';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { Parametro } from 'src/app/models/Parametro';
 
 import { Filme, Genero } from 'src/app/models/filme';
 import { FilmeHttpService } from 'src/app/services/http/filme-http.service';
 import { LocalStorageService } from 'src/app/services/localStorage/local-storage.service';
+import { SideNavService } from 'src/app/services/sideNav/side-nav.service';
 
 
 @Component({
@@ -19,26 +21,57 @@ export class HomeComponent {
   pagina: number = 1
   generos!: Genero[]
   genero?: Genero
-
   filmesPopulares?: Observable<Filme[]>
   filmesRecomendados?: Observable<Filme[]>
   filmesNovidades?: Observable<Filme[]>
   filmesFavoritos?: any
   filmesPorGenero?: Observable<Filme[]>
+  categoria: Parametro = 'Novidades'
 
-  categoria!: Parametro
+
+  constructor(
+    private router: Router,
+    private service: FilmeHttpService,
+    private localStorage: LocalStorageService,
+    private telaService: SideNavService) { }
 
 
-  constructor(private router: Router, private service: FilmeHttpService, private localStorage: LocalStorageService) { }
+  @ViewChild('tabs') tabs!: MatTabGroup;
 
   ngOnInit(): void {
-    this.filmesNovidades = this.service.obterFilmesLancamentos("1")
+     this.obterGeneros()
+
+    this.categoria = this.telaService.verificarCategoriaAtual()
+
+    if (this.categoria == 'Novidades')
+      this.obterLista(this.categoria, '1')
+  }
+
+  private obterIndex(category: Parametro) {
+
+    switch (category) {
+      case "Novidades": return 0
+      case "Populares": return 1
+      case "Recomendados": return 2
+      case "Gêneros": return 3
+      case "Favoritos": return 4
+    }
+  }
+
+  private obterGeneros() {
     this.service.obterGeneros().subscribe(res => {
       this.generos = res;
       this.genero = this.generos[0];
-    })
-    this.categoria = 'Novidades'
 
+      this.telaService.receberCategoria()
+      .subscribe(category => {
+        const tabIndex = this.obterIndex(category);
+        this.tabs.selectedIndex = tabIndex;
+        this.tabs.focusTab(tabIndex!);
+
+      })
+
+    });
   }
 
   mostrarDetalhes(filme: Filme) {
