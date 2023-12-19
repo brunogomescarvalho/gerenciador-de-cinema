@@ -39,7 +39,7 @@ export class HomeComponent {
   @ViewChild('tabs') tabs!: MatTabGroup;
 
   ngOnInit(): void {
-     this.obterGeneros()
+    this.inicializarDados()
 
     this.categoria = this.telaService.verificarCategoriaAtual()
 
@@ -58,19 +58,18 @@ export class HomeComponent {
     }
   }
 
-  private obterGeneros() {
+  private inicializarDados() {
     this.service.obterGeneros().subscribe(res => {
       this.generos = res;
       this.genero = this.generos[0];
 
       this.telaService.receberCategoria()
-      .subscribe(category => {
-        const tabIndex = this.obterIndex(category);
-        this.tabs.selectedIndex = tabIndex;
-        this.tabs.focusTab(tabIndex!);
-
-      })
-
+        .subscribe(category => {
+          const tabIndex = this.obterIndex(category);
+          this.tabs.selectedIndex = tabIndex;
+          this.tabs.focusTab(tabIndex!);
+          window.scrollTo(0,0)
+        })
     });
   }
 

@@ -4,27 +4,27 @@ import { BehaviorSubject } from 'rxjs';
 import { Parametro } from 'src/app/models/Parametro';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SideNavService {
+  mudarCategoriaSubject: BehaviorSubject<Parametro>;
 
-  mudarCategoriaSubject: BehaviorSubject<Parametro>
+  categoriaSelecionada: Parametro = 'Novidades';
 
-  categoriaSelecionada: Parametro = 'Novidades'
-
-  constructor() { this.mudarCategoriaSubject = new BehaviorSubject<Parametro>('Novidades') }
+  constructor() {
+    this.mudarCategoriaSubject = new BehaviorSubject<Parametro>('Novidades');
+  }
 
   alterarCategoria(categoria: Parametro) {
-    this.categoriaSelecionada = categoria
-    this.mudarCategoriaSubject.next(categoria)
+    this.categoriaSelecionada = categoria;
+    this.mudarCategoriaSubject.next(categoria);
   }
 
   receberCategoria() {
-    return this.mudarCategoriaSubject.asObservable()
+    return this.mudarCategoriaSubject.asObservable();
   }
 
   verificarCategoriaAtual() {
-    return this.categoriaSelecionada
+    return this.categoriaSelecionada;
   }
-
 }

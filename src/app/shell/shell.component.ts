@@ -1,10 +1,10 @@
-import { Component, ViewChild, inject } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
-import { AsyncPipe, NgIf } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, inject, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map, shareReplay } from 'rxjs/operators';
+
 import { Parametro } from '../models/Parametro';
 import { SideNavService } from '../services/sideNav/side-nav.service';
 
@@ -21,6 +21,8 @@ export class ShellComponent {
 
   nome!: string
 
+  ehHandSet?: boolean
+
   constructor(private router: Router, private telaService: SideNavService, private route: ActivatedRoute) { }
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -32,9 +34,7 @@ export class ShellComponent {
 
   ngAfterViewInit() {
     this.isHandset$.subscribe(isHandset => {
-      if (!isHandset) {
-        this.drawer.close();
-      }
+      this.ehHandSet = isHandset
     });
   }
 
@@ -51,7 +51,9 @@ export class ShellComponent {
 
     this.telaService.alterarCategoria(categoria)
 
-    this.drawer.close()
+    if (this.ehHandSet) {
+      this.drawer.close();
+    }
   }
 
 }
