@@ -54,7 +54,7 @@
         <form (ngSubmit)="onSubmit()" class="d-flex" role="search">
           <input [(ngModel)]="nome" name="nome" class="form-control me-2" type="search" placeholder="Search"
             aria-label="Search">
-          <button class="btn btn-secondary" type="submit">Pesquisar</button>
+          <button (click)="id = null" class="btn btn-secondary" type="submit">Pesquisar</button>
         </form>
       </mat-toolbar-row>
     </mat-toolbar>

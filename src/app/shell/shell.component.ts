@@ -22,7 +22,7 @@ export class ShellComponent {
 
   nome!: string
 
-  id: Parametro = 'Novidades'
+  id: Parametro | null = 'Novidades'
 
   ehHandSet?: boolean
 
