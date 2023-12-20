@@ -7,6 +7,7 @@ import { map, shareReplay } from 'rxjs/operators';
 
 import { Parametro } from '../models/Parametro';
 import { SideNavService } from '../services/sideNav/side-nav.service';
+import { MatNavList } from '@angular/material/list';
 
 @Component({
   selector: 'app-shell',
@@ -21,6 +22,8 @@ export class ShellComponent {
 
   nome!: string
 
+  id: Parametro = 'Novidades'
+
   ehHandSet?: boolean
 
   constructor(private router: Router, private telaService: SideNavService, private route: ActivatedRoute) { }
@@ -31,6 +34,10 @@ export class ShellComponent {
       shareReplay()
     )
 
+  ngOnInit() {
+    this.telaService.receberCategoria()
+      .subscribe(x => this.id = x)
+  }
 
   ngAfterViewInit() {
     this.isHandset$.subscribe(isHandset => {
@@ -43,7 +50,10 @@ export class ShellComponent {
     this.nome = "";
   }
 
+
   mudarCategoria(categoria: Parametro) {
+    this.id = categoria
+
     let url = this.router.url.split('/')[1]
 
     if (url != 'home')

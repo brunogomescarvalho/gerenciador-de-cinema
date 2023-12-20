@@ -84,6 +84,9 @@ export class HomeComponent {
   }
 
   public obterLista(categoria: any, pagina: string) {
+
+    this.telaService.alterarCategoria(categoria)
+
     this.pagina = 1
     this.categoria = categoria
 
