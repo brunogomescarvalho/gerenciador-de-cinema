@@ -1,7 +1,7 @@
 import { Component, Input, SimpleChanges, ViewChild } from '@angular/core';
 import { MatTabGroup } from '@angular/material/tabs';
 import { Router } from '@angular/router';
-import { Observable, take } from 'rxjs';
+import { Observable, map, of, switchMap, take } from 'rxjs';
 import { Parametro } from 'src/app/models/Parametro';
 
 import { Filme, Genero } from 'src/app/models/filme';
@@ -27,6 +27,7 @@ export class HomeComponent {
   filmesFavoritos?: any
   filmesPorGenero?: Observable<Filme[]>
   categoria: Parametro = 'Novidades'
+  total_registros: number = 2000
 
 
   constructor(
@@ -68,7 +69,7 @@ export class HomeComponent {
           const tabIndex = this.obterIndex(category);
           this.tabs.selectedIndex = tabIndex;
           this.tabs.focusTab(tabIndex!);
-          window.scrollTo(0,0)
+          window.scrollTo(0, 0)
         })
     });
   }
@@ -86,7 +87,7 @@ export class HomeComponent {
   public obterLista(categoria: any, pagina: string) {
 
     this.telaService.alterarCategoria(categoria)
-
+    this.total_registros = 2000
     this.pagina = 1
     this.categoria = categoria
 
@@ -105,8 +106,9 @@ export class HomeComponent {
   }
 
 
+
   obterGenero(pagina: string) {
-    this.filmesPorGenero = this.service.obterPorGenero(this.genero!.id.toString(), pagina);
+    this.filmesPorGenero = this.service.obterPorGenero(this.genero!.id.toString(), pagina)
   }
   obterRecomendados(pagina: string) {
     this.filmesRecomendados = this.service.obterFilmesRecomendados(pagina)
@@ -120,6 +122,7 @@ export class HomeComponent {
 
   obterFavoritos() {
     this.filmesFavoritos = this.localStorage.obterFavoritos()!
+    this.total_registros = this.filmesFavoritos.lenght
   }
 }
 

@@ -1,8 +1,8 @@
 <div class="container-fluid">
     <div class="row mt-4">
         <div class="col">
-            <ngb-pagination class="d-flex justify-content-center" (pageChange)="mudarPagina($event)"
-            [collectionSize]="200" [maxSize]="5" [(page)]="pagina" [boundaryLinks]="true"></ngb-pagination>
+            <ngb-pagination #pagination class="d-flex justify-content-center" (pageChange)="mudarPagina($event)"
+            [collectionSize]="collectionSize" [pageSize]="20" [maxSize]="5"  [(page)]="pagina" ></ngb-pagination>
         </div>
     </div>
     <div class="row">

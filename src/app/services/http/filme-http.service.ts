@@ -51,8 +51,7 @@ export class FilmeHttpService {
 
     return this.httpClient.get(url, this.obterAutorizacao())
       .pipe(
-        map((res: any) => res.results),
-        map((obj: any[]) => this.mapeador.mapearPesquisa(obj))
+        map((res: any) => this.mapeador.mapearPesquisa(res))
       );
   }
 

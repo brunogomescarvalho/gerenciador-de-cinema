@@ -15,6 +15,7 @@ export class PesquisaComponent implements OnInit {
   filmes!: Filme[]
   pessoas!: Pessoa[]
   resultado: Filme[] & Pessoa[] = []
+  collectionSize!:number
 
   constructor(private service: FilmeHttpService, private router: Router, private route: ActivatedRoute) { }
 
@@ -36,6 +37,7 @@ export class PesquisaComponent implements OnInit {
     this.service.obterPorPesquisa(nome, pagina).subscribe((data: any) => {
       this.filmes = data.filmes;
       this.pessoas = data.pessoas;
+      this.collectionSize = data.totalRegistros;
       this.resultado = this.pessoas.concat(this.filmes)
     })
   }

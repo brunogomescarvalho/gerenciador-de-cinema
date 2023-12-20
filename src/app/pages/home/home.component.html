@@ -5,7 +5,8 @@
         class="d-flex justify-content-center"
         [page]="pagina"
         (pageChange)="mudarPagina($event)"
-        [collectionSize]="200"
+        [collectionSize]="total_registros"
+        [pageSize]="20"
         [maxSize]="5"
       ></ngb-pagination>
     </div>

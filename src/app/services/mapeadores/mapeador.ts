@@ -101,7 +101,10 @@ export class Mapeador {
     });
   }
 
-  public mapearPesquisa(obj: any[]) {
+  public mapearPesquisa(res: any) {
+    let obj = res.results as any[];
+    let total = res.total_results
+
     const filmes = obj.filter(
       (item) => item.media_type === 'movie' && item.poster_path != null
     );
@@ -110,6 +113,7 @@ export class Mapeador {
     );
 
     return {
+      totalRegistros: total,
       filmes: this.mapearListaFilmes(filmes),
       pessoas: this.mapearListaPessoas(pessoas),
     };
