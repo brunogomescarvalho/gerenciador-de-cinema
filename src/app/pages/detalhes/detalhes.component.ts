@@ -12,7 +12,7 @@ import { Pessoa } from 'src/app/models/pessoa';
   styleUrls: ['./detalhes.component.css'],
 })
 export class DetalhesComponent implements OnInit {
-  filme?: Filme;
+  filme!: Filme;
   favorito: boolean = false;
   avaliacao: number = 0;
   diretor?: Pessoa;
@@ -28,17 +28,16 @@ export class DetalhesComponent implements OnInit {
     private serviceHttp: FilmeHttpService,
     private sanitizer: DomSanitizer,
     private localStorage: LocalStorageService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
-    const id = this.route.snapshot.params['id'];
-    this.obterFilme(id);
+    this.filme = this.route.snapshot.data['filme']
+    this.configurarFilme();
   }
 
-  private obterFilme(id: number) {
-    this.serviceHttp.obterPorId(id).subscribe((res) => {
-      this.filme = res;
+  private configurarFilme() {
+
       this.favorito = this.localStorage.ehFavorito(this.filme);
       this.avaliacao = parseFloat((this.filme!.avaliacao! / 2).toFixed(2));
       this.diretor = Array.from(this.filme?.diretores!)[0];
@@ -49,7 +48,7 @@ export class DetalhesComponent implements OnInit {
         this.trailerUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
           this.filme.trailer!
         );
-    });
+
   }
 
   public adicionarFavoritos() {

@@ -17,14 +17,10 @@ export class PessoasComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router, private service: FilmeHttpService, private localStorage: LocalStorageService) { }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.params['id']
-
-    this.service.obterPessoaPorId(id)
-      .subscribe(pessoa => {
-        this.pessoa = pessoa;
-        this.favorito = this.localStorage.ehFavorito(this.pessoa);
-        this.obterImagemAlternativa()
-      })
+    window.scrollTo(0,0)
+    this.pessoa = this.route.snapshot.data['pessoa']
+    this.favorito = this.localStorage.ehFavorito(this.pessoa!);
+    this.obterImagemAlternativa()
 
   }
 
@@ -34,7 +30,7 @@ export class PessoasComponent implements OnInit {
     let pessoa: IFavorito = {
       id: this.pessoa!.id,
       nome: this.pessoa!.nome,
-      poster:this.pessoa!.poster,
+      poster: this.pessoa!.poster,
       tipo: 'elenco'
     }
 

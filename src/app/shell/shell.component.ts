@@ -22,7 +22,7 @@ export class ShellComponent {
 
   nome!: string
 
-  id: Parametro | null = 'Novidades'
+  categoria: Parametro | null = 'Novidades'
 
   ehHandSet?: boolean
 
@@ -36,7 +36,7 @@ export class ShellComponent {
 
   ngOnInit() {
     this.telaService.receberCategoria()
-      .subscribe(x => this.id = x)
+      .subscribe(x => this.categoria = x)
   }
 
   ngAfterViewInit() {
@@ -52,7 +52,7 @@ export class ShellComponent {
 
 
   mudarCategoria(categoria: Parametro) {
-    this.id = categoria
+    this.categoria = categoria
 
     let url = this.router.url.split('/')[1]
 

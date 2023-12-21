@@ -25,7 +25,7 @@
         </div>
         <div class="col-lg-7 col-md-6 col-sm-12 mt-3">
           <div class="col text-bg-black">
-            <p class="fs-4 text-center">{{ filme?.nome }}</p>
+            <p class="fs-4 text-center">{{ filme.nome }}</p>
           </div>
           <hr class="mt-0" />
           <div class="col">
@@ -43,14 +43,14 @@
                 <p class="fs-6">{{ favorito ? 'Favorito' : 'Adicionar aos Favoritos' }}</p>
               </div>
               <div class="col-md-4 col-sm-12 text-center">
-                <p class="fs-3 text-center fw-light m-0 p-0">{{ filme?.data | date: 'yyyy' }}</p>
+                <p class="fs-3 text-center fw-light m-0 p-0">{{ filme.data | date: 'yyyy' }}</p>
                 <p class="fs-6">Lançamento</p>
               </div>
             </div>
             <hr class="mt-0" />
           </div>
           <div class="col text-secondary  px-4 resumo">
-            <p class="fs-5">{{ filme?.resumo }}</p>
+            <p class="fs-5">{{ filme.resumo }}</p>
           </div>
           <div class="col px-4 pb-1">
             <div *ngIf="!this.filme?.trailer?.endsWith('undefined')">
